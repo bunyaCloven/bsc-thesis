@@ -27,16 +27,16 @@ public class DatabaseConfig {
 		vendorAdapter.setGenerateDdl(true);
 		vendorAdapter.setShowSql(false);
 		factory.setJpaVendorAdapter(vendorAdapter);
-		factory.setDataSource(testDataSource());
+		factory.setDataSource(dataSource());
 		factory.setJpaProperties(jpaProperties());
 		return factory;
 	}
 
 	@Bean
-	public DataSource testDataSource() {
+	public DataSource dataSource() {
 		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl(environment.getProperty("spring.datasource.url"));
+		dataSource.setUrl("jdbc:postgresql://localhost/beeride");
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("postgres");
 		return dataSource;

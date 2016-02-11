@@ -14,9 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Table(name = "xUser")
 public class User implements UserDetails {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	/***/
+	private static final long serialVersionUID = 8993535253591423766L;
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 	private String username;
 	private String password;
 	private String encoder;
@@ -43,12 +43,12 @@ public class User implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return "admin";
+		return username;
 	}
 
 	@Override
 	public String getPassword() {
-		return "pass";
+		return password;
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package co.madran.beeride.security;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +17,8 @@ public class UserService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		UserDetails result = repo.findByUsername(username);
+		UserDetails result = repo.findByUsername(username
+				.toLowerCase(Locale.ENGLISH));
 		if (result == null) {
 			throw new UsernameNotFoundException("not found");
 		}
