@@ -11,13 +11,14 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name = "xUser")
 public class User implements UserDetails {
-	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String username;
+	private @Id @Expose Long id;
+	private @Expose String username;
 	private String password;
 	private String encoder;
 

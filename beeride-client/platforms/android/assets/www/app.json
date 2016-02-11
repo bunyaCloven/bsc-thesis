@@ -1,0 +1,63 @@
+{
+    "name": "beeride",
+    "indexHtmlPath": "index.html",
+    "url": null,
+    "js": [
+		{
+			"path": "cordova.js",
+			"remote": true
+		},
+        {
+            "path": "sencha/sencha-touch.js",
+            "x-bootstrap": true
+        },
+        {
+            "path": "bootstrap.js",
+            "x-bootstrap": true
+        },
+        {
+            "path": "app.js",
+            "bundle": true,
+            "update": "delta"
+        }
+    ],
+
+  
+    "css": [
+        {
+            "path": "sencha/resources/css/cupertino.css",
+            "update": "delta"
+        }
+    ],
+
+    "appCache": {
+
+        "cache": [
+            "index.html"
+        ],
+
+        "network": [
+            "*"
+        ],
+
+        "fallback": []
+    },
+
+    "resources": [
+        "resources/images",
+        "resources/icons",
+        "resources/startup"
+    ],
+
+
+    "ignore": [
+        ".svn$"
+    ],
+
+    "archivePath": "archive",
+
+    "requires": [
+    ],
+
+    "id": "2520e3ca-ff4a-43dd-b2ed-67360fa8b333"
+}
