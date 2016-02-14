@@ -1,22 +1,48 @@
 Ext.define('Beeride.form.Path', {
-	extend : 'Ext.Panel',
+	extend : 'Ext.form.Panel',
 	config : {
 		layout : 'vbox',
+		xtype : 'fieldset',
+		url : serverAddress + '/paths/add',
 		items : [ {
-			xtype : 'formpanel',
-			flex : 1,
-			config : {
+			items : [ {
+				xtype : 'hiddenfield',
+				name : 'id'
+			}, {
+				xtype : 'textfield',
+				placeHolder : 'Name',
+				name : 'name'
+			}, {
+				xtype : 'panel',
+				layout : 'hbox',
 				items : [ {
-					layout : 'vbox',
-					xtype : 'fieldset',
-					url : serverAddress + '/paths/add',
-					items : [ {
-						xtype : 'textfield',
-						placeHolder : 'Name',
-						name : 'name'
-					} ]
+					xtype : 'textfield',
+					name : 'start',
+					placeHolder : 'Start Point',
+					readOnly : true,
+					flex : 1
+				}, {
+					xtype : 'button',
+					iconCls : 'locate',
+					itemId : 'locate'
 				} ]
-			}
+			}, {
+				xtype : 'panel',
+				layout : 'hbox',
+				items : [ {
+					xtype : 'textfield',
+					name : 'end',
+					placeHolder : 'End Point',
+					readOnly : true,
+					flex : 1
+				}, {
+					xtype : 'button',
+					iconCls : 'locate',
+					itemId : 'locate'
+				} ]
+			}, {
+				flex : 1
+			} ]
 		} ]
 	}
 });

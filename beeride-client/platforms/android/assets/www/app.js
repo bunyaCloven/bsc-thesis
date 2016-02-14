@@ -9,14 +9,14 @@
     changes and its generated code, it will produce a "merge conflict" that you
     will need to resolve manually.
  */
-window.serverAddress = "http://192.168.0.102:8080";
+window.serverAddress = "http://localhost:8080";
 Ext.application({
 	name : 'Beeride',
-	models : [ 'Path' ],
-	stores : [ 'Path' ],
+	models : [ 'Path', 'Car' ],
+	stores : [ 'Path', 'Car' ],
 	requires : [ 'Ext.MessageBox', 'Beeride.util.Auth' ],
 	controllers : [ 'Login', 'Crud', 'Form' ],
-	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar' ],
+	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar', 'FormToolbar' ],
 
 	icon : {
 		'57' : 'resources/icons/Icon.png',
@@ -39,6 +39,7 @@ Ext.application({
 	launch : function() {
 		Ext.fly('appLoadingIndicator').destroy();
 		Ext.Viewport.add(Ext.create('Beeride.view.Login'));
+
 	},
 
 	onUpdated : function() {
@@ -48,5 +49,24 @@ Ext.application({
 						window.location.reload();
 					}
 				});
+	}
+});
+Ext.define('Override.util.PaintMonitor', {
+	override : 'Ext.util.PaintMonitor',
+	constructor : function(config) {
+		return new Ext.util.paintmonitor.CssAnimation(config);
+	}
+});
+Ext.define('Override.util.SizeMonitor', {
+	override : 'Ext.util.SizeMonitor',
+	constructor : function(config) {
+		var namespace = Ext.util.sizemonitor;
+		if (Ext.browser.is.Firefox) {
+			return new namespace.OverflowChange(config);
+		} else if (Ext.browser.is.WebKit || Ext.browser.is.IE11) {
+			return new namespace.Scroll(config);
+		} else {
+			return new namespace.Default(config);
+		}
 	}
 });

@@ -38,6 +38,9 @@ Ext.define('Beeride.controller.Login', {
 				Ext.Viewport.add({
 					xtype : 'main'
 				});
+				var mainView = Ext.ComponentQuery.query('main')[0];
+				mainView.getLayout().setAnimation(false);
+
 			},
 			failure : function(form, result) {
 				Ext.Msg.alert("", "Sign in failed", Ext.emptyFn);

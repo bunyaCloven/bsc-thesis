@@ -1,4 +1,4 @@
-Ext.define('Beeride.model.Path', {
+Ext.define('Beeride.model.Car', {
 	extend : 'Ext.data.Model',
 	config : {
 		fields : [ {

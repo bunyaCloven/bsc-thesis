@@ -8,7 +8,14 @@ Ext.define('Beeride.view.FormToolbar', {
 			iconCls : 'action',
 			itemId : 'submit',
 			handler : function() {
-				this.up('formpanel').submit();
+				this.up('formpanel').submit({
+					params : {
+						username : Beeride.util.Auth.getUsername()
+					},
+					success : function() {
+						this.up().remove(this);
+					}
+				});
 			}
 		}, {
 			xtype : 'spacer'

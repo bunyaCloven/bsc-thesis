@@ -1,9 +1,9 @@
-Ext.define('Beeride.form.Path', {
+Ext.define('Beeride.form.Car', {
 	extend : 'Ext.form.Panel',
 	config : {
 		layout : 'vbox',
 		xtype : 'fieldset',
-		url : serverAddress + '/paths/add',
+		url : serverAddress + '/cars/add',
 		items : [ {
 			items : [ {
 				xtype : 'hiddenfield',
@@ -12,6 +12,8 @@ Ext.define('Beeride.form.Path', {
 				xtype : 'textfield',
 				placeHolder : 'Name',
 				name : 'name'
+			}, {
+				flex : 1
 			} ]
 		} ]
 	}

@@ -9,7 +9,12 @@ Ext.define('Beeride.view.Menu', {
 			itemId : 'path',
 			text : 'Path module',
 			store : 'Path'
-		} ],
-
+		}, {
+			xtype : 'button',
+			itemId : 'car',
+			text : 'Car Profile',
+			store : 'Car',
+			deleteUrl : '/cars/delete'
+		} ]
 	}
 });

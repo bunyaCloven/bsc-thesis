@@ -5,19 +5,24 @@ Ext.define('Beeride.controller.Crud', {
 			'button#path' : {
 				tap : 'crud'
 			},
+			'button#car' : {
+				tap : 'crud'
+			},
 			'crud' : {
-				initialize : 'crudShow'
+				initialize : 'crudInit',
+				show : 'crudShow'
 			}
 		}
 	},
 	crud : function(that, e, eOpts) {
 		Ext.ComponentQuery.query('main')[0].push({
 			xtype : 'crud',
+			deleteUrl : that.deleteUrl,
 			itemId : that._itemId,
 			store : that.store
 		});
 	},
-	crudShow : function(that, e, eOpts) {
+	crudInit : function(that, e, eOpts) {
 		if (!that.store) {
 			return;
 		}
@@ -35,5 +40,11 @@ Ext.define('Beeride.controller.Crud', {
 			xtype : 'listtoolbar',
 			form : that.store
 		});
+	},
+	crudShow : function(that, e, eOpts) {
+		var store = Ext.data.StoreManager.lookup(that.store);
+		var proxy = store.getProxy();
+		proxy.setExtraParam('username', Beeride.util.Auth.getUsername());
+		store.load();
 	}
 });

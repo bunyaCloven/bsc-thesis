@@ -9,14 +9,15 @@
     changes and its generated code, it will produce a "merge conflict" that you
     will need to resolve manually.
  */
-window.serverAddress = "http://192.168.0.102:8080";
+window.serverAddress = "http://localhost:8080";
 Ext.application({
 	name : 'Beeride',
-	models : [ 'Path' ],
-	stores : [ 'Path' ],
+	models : [ 'Path', 'Car' ],
+	stores : [ 'Path', 'Car' ],
 	requires : [ 'Ext.MessageBox', 'Beeride.util.Auth' ],
-	controllers : [ 'Login', 'Crud', 'Form' ],
-	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar', 'FormToolbar' ],
+	controllers : [ 'Login', 'Crud', 'Form', 'Path' ],
+	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar', 'FormToolbar',
+			'LocationToolbar' ],
 
 	icon : {
 		'57' : 'resources/icons/Icon.png',
