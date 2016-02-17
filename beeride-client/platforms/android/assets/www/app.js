@@ -15,8 +15,9 @@ Ext.application({
 	models : [ 'Path', 'Car' ],
 	stores : [ 'Path', 'Car' ],
 	requires : [ 'Ext.MessageBox', 'Beeride.util.Auth' ],
-	controllers : [ 'Login', 'Crud', 'Form' ],
-	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar', 'FormToolbar' ],
+	controllers : [ 'Login', 'Crud', 'Form', 'Path' ],
+	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar', 'FormToolbar',
+			'LocationToolbar' ],
 
 	icon : {
 		'57' : 'resources/icons/Icon.png',

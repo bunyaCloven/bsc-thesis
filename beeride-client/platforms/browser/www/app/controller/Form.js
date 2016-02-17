@@ -25,7 +25,12 @@ Ext.define('Beeride.controller.Form', {
 		Ext.ComponentQuery.query('main')[0].add(form);
 	},
 	update : function(that) {
-
+		var form = Ext.create('Beeride.form.' + that.up().form);
+		var list = that.up('form');
+		form.add({
+			xtype : 'formtoolbar'
+		});
+		Ext.ComponentQuery.query('main')[0].add(form);
 	},
 	deletex : function(that) {
 		var list = that.up('panel').down('list');

@@ -13,7 +13,7 @@ Ext.define('Beeride.view.FormToolbar', {
 						username : Beeride.util.Auth.getUsername()
 					},
 					success : function() {
-						// TODO: destroy the form
+						this.up().remove(this);
 					}
 				});
 			}

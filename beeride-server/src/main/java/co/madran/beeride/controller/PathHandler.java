@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.madran.beeride.model.dao.LocationRepository;
 import co.madran.beeride.model.dao.PathRepository;
 import co.madran.beeride.model.dao.UserRepository;
+import co.madran.beeride.model.domain.Location;
 import co.madran.beeride.model.domain.Path;
 import co.madran.beeride.model.domain.User;
 
@@ -29,6 +31,8 @@ public class PathHandler {
 	private UserRepository userRepository;
 	@Autowired
 	private PathRepository pathRepository;
+	@Autowired
+	private LocationRepository locationRepository;
 
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET)
@@ -44,13 +48,16 @@ public class PathHandler {
 	@ResponseBody
 	@RequestMapping(path = "add", method = RequestMethod.POST)
 	public String addPathToUser(@RequestParam String username,
-			@RequestParam String name) {
+			@RequestParam String name, @RequestParam String start,
+			@RequestParam String end) {
 		JsonObject response = new JsonObject();
 		response.addProperty("success", true);
 		User user = userRepository.findByUsername(username);
 		Path path = new Path();
 		path.setName(name);
 		path.setUser(user);
+		path.setStart(locationRepository.save(Location.decode(start)));
+		path.setEnd(locationRepository.save(Location.decode(end)));
 		pathRepository.save(path);
 		return response.toString();
 	}

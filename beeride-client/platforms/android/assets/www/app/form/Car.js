@@ -12,6 +12,8 @@ Ext.define('Beeride.form.Car', {
 				xtype : 'textfield',
 				placeHolder : 'Name',
 				name : 'name'
+			}, {
+				flex : 1
 			} ]
 		} ]
 	}

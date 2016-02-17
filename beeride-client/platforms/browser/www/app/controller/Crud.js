@@ -2,10 +2,7 @@ Ext.define('Beeride.controller.Crud', {
 	extend : 'Ext.app.Controller',
 	config : {
 		control : {
-			'button#path' : {
-				tap : 'crud'
-			},
-			'button#car' : {
+			'button[store]' : {
 				tap : 'crud'
 			},
 			'crud' : {
@@ -34,7 +31,11 @@ Ext.define('Beeride.controller.Crud', {
 			xtype : 'list',
 			itemTpl : '{name}',
 			flex : 1,
-			store : store
+			store : store,
+			plugins : [ {
+				xclass : 'Ext.plugin.ListPaging',
+				autoPaging : true
+			} ]
 		});
 		that.add({
 			xtype : 'listtoolbar',

@@ -2,12 +2,43 @@ package co.madran.beeride.model.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.google.gson.annotations.Expose;
 
 @Entity
 public class Location {
-	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
-	private Long latitude;
-	private Long longitude;
+	private @Id @GeneratedValue Long id;
+	private @Expose Double latitude;
+	private @Expose Double longitude;
+
+	public Location() {
+	}
+
+	public Location(Double lat, Double lng) {
+		latitude = lat;
+		longitude = lng;
+	}
+
+	public static Location decode(String encoded) {
+		String[] decoded = encoded.split(",");
+		return new Location(Double.valueOf(decoded[0]),
+				Double.valueOf(decoded[1]));
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
 }
