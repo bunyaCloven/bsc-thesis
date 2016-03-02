@@ -19,7 +19,8 @@ Ext.define('Beeride.form.Carpool', {
 			label : 'path:',
 			mystore : 'Path',
 			placeholder : 'select',
-			name : 'path',
+			name : 'path'
+		}, {
 			flex : 1
 		} ]
 	}

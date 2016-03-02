@@ -6,30 +6,61 @@ Ext.define('Beeride.view.Menu', {
 		scrollable : null,
 		items : [ {
 			xtype : 'button',
-			itemId : 'path',
-			text : 'Path module',
-			store : 'Path',
-			deleteUrl : '/paths/delete',
-			editUrl : '/paths'
+			text : 'For Drivers',
+			handler : function() {
+				var main = Ext.ComponentQuery.query('main')[0];
+				main.push({
+					xtype : 'panel',
+					items : [ {
+						xtype : 'button',
+						itemId : 'path',
+						text : 'Path module',
+						store : 'Path',
+						deleteUrl : '/paths/delete',
+						editUrl : '/paths'
+					}, {
+						xtype : 'button',
+						itemId : 'car',
+						text : 'My Car Profiles',
+						store : 'Car',
+						deleteUrl : '/cars/delete',
+						editUrl : '/cars'
+					}, {
+						xtype : 'button',
+						itemId : 'carpool',
+						text : 'My Carpools',
+						store : 'Carpool',
+						deleteUrl : '/carpools/delete',
+						editUrl : '/carpools'
+					} ]
+				});
+			}
 		}, {
 			xtype : 'button',
-			itemId : 'car',
-			text : 'My Car Profiles',
-			store : 'Car',
-			deleteUrl : '/cars/delete',
-			editUrl : '/cars'
-		}, {
-			xtype : 'button',
-			itemId : 'cars',
-			text : 'Car Profiles',
-			store : 'Cars',
-			paging : true,
-			dni : true
-		}, {
-			xtype : 'button',
-			itemId : 'carpool',
-			text : 'My Carpools',
-			store : 'Carpool'
+			text : 'For Passengers',
+			handler : function() {
+				var main = Ext.ComponentQuery.query('main')[0];
+				main.push({
+					xtype : 'panel',
+					items : [ {
+						xtype : 'button',
+						itemId : 'cars',
+						text : 'Car Profiles',
+						store : 'Cars',
+						listCallback : 'Beeride.view.Car',
+						editUrl : '/cars',
+						paging : true,
+						dni : true
+					}, {
+						xtype : 'button',
+						itemId : 'carpools',
+						text : 'All Carpools',
+						store : 'Carpools',
+						paging : true,
+						dni : true
+					} ]
+				});
+			}
 		} ]
 	}
 });

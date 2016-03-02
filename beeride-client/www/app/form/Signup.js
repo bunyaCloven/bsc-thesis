@@ -9,7 +9,7 @@ Ext.define('Beeride.form.Signup', {
 			name : 'username',
 			placeHolder : 'username'
 		}, {
-			xtype : 'textfield',
+			xtype : 'emailfield',
 			name : 'email',
 			placeHolder : 'email'
 		}, {

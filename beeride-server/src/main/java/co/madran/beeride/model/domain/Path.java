@@ -42,4 +42,8 @@ public class Path {
 	public void setEndLocation(Location location) {
 		endLocation = location;
 	}
+
+	public Long getId() {
+		return id;
+	}
 }

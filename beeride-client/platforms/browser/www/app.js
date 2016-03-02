@@ -17,7 +17,7 @@ requires = [ 'Ext.MessageBox', 'Beeride.util.Auth', 'Beeride.util.Ajax',
 Ext.application({
 	name : 'Beeride',
 	models : [ 'Path', 'Car', 'Carpool' ],
-	stores : [ 'Path', 'Car', 'Cars', 'Carpool' ],
+	stores : [ 'Path', 'Car', 'Cars', 'Carpool', 'Carpools' ],
 	requires : requires,
 	controllers : [ 'Login', 'Crud', 'Form', 'Path', 'List' ],
 	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar', 'FormToolbar',

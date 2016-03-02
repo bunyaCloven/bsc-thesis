@@ -13,6 +13,7 @@ public class Car {
 	private @Expose String name;
 	private User user;
 	private @Expose Integer passengerCount;
+	private @Expose String brand;
 
 	public void setName(String name) {
 		this.name = name;
@@ -20,5 +21,9 @@ public class Car {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 }

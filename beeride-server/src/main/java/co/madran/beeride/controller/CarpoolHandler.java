@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.madran.beeride.model.dao.CarpoolRepository;
+import co.madran.beeride.model.dao.PathRepository;
 import co.madran.beeride.model.dao.UserRepository;
-import co.madran.beeride.model.domain.Car;
 import co.madran.beeride.model.domain.Carpool;
 import co.madran.beeride.model.domain.User;
 
@@ -32,6 +32,8 @@ public class CarpoolHandler {
 	private CarpoolRepository carpoolRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private PathRepository pathRepository;
 
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET)
@@ -47,7 +49,8 @@ public class CarpoolHandler {
 	@ResponseBody
 	@RequestMapping(path = "add", method = RequestMethod.POST)
 	public String addCarpoolToUser(@RequestParam Long id,
-			@RequestParam String username, @RequestParam String name) {
+			@RequestParam String username, @RequestParam String name,
+			@RequestParam String time, @RequestParam Long path) {
 		JsonObject response = new JsonObject();
 		response.addProperty("success", true);
 
@@ -57,6 +60,9 @@ public class CarpoolHandler {
 			carpool.setUser(user);
 		} else {
 			carpool = carpoolRepository.findOne(id);
+		}
+		if (path != null) {
+			carpool.setPath(pathRepository.findOne(path));
 		}
 		carpool.setName(name);
 		carpoolRepository.save(carpool);

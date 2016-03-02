@@ -18,6 +18,8 @@ public class Carpool {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date time;
 	private @Expose String name;
+	private Path pathx;
+	private @Expose Long path;
 
 	public void setName(String name) {
 		this.name = name;
@@ -29,5 +31,10 @@ public class Carpool {
 
 	public void setTime(Date time) {
 		this.time = time;
+	}
+
+	public void setPath(Path path) {
+		this.pathx = path;
+		this.path = path.getId();
 	}
 }
