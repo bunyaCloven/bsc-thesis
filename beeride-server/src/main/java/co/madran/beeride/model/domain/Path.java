@@ -12,8 +12,12 @@ public class Path {
 	private @Id @Expose @GeneratedValue Long id;
 	private @Expose String name;
 	private User user;
-	private @Expose Location start;
-	private @Expose Location end;
+
+	private @Expose String start;
+	private @Expose String xend;
+
+	private Location startLocation;
+	private Location endLocation;
 
 	public void setUser(User user) {
 		this.user = user;
@@ -23,11 +27,19 @@ public class Path {
 		this.name = name;
 	}
 
-	public void setStart(Location start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
 
-	public void setEnd(Location end) {
-		this.end = end;
+	public void setEnd(String end) {
+		this.xend = end;
+	}
+
+	public void setStartLocation(Location location) {
+		startLocation = location;
+	}
+
+	public void setEndLocation(Location location) {
+		endLocation = location;
 	}
 }

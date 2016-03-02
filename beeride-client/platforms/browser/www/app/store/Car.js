@@ -1,7 +1,7 @@
 Ext.define('Beeride.store.Car', {
 	extend : 'Ext.data.Store',
 	config : {
-		model : 'Beeride.model.Path',
+		model : 'Beeride.model.Car',
 		proxy : {
 			headers : {
 				Authorization : Beeride.util.Auth.get()

@@ -8,6 +8,12 @@ Ext.define('Beeride.controller.Login', {
 		control : {
 			'button#login' : {
 				tap : 'login'
+			},
+			'button#logOff' : {
+				tap : 'logoff'
+			},
+			'button#signup' : {
+				tap : 'signup'
 			}
 		}
 	},
@@ -40,11 +46,32 @@ Ext.define('Beeride.controller.Login', {
 				});
 				var mainView = Ext.ComponentQuery.query('main')[0];
 				mainView.getLayout().setAnimation(false);
-
+				var store = Ext.data.StoreManager.lookup('Path');
+				var proxy = store.getProxy();
+				proxy.setExtraParam('username', Beeride.util.Auth.getUsername());
+				var loaded = store.load();
 			},
 			failure : function(form, result) {
 				Ext.Msg.alert("", "Sign in failed", Ext.emptyFn);
 			}
 		});
 	},
+	logoff : function() {
+		Ext.Ajax.request({
+			url : serverAddress + '/logout',
+			success : function() {
+				Ext.Viewport.removeAll();
+				Ext.Viewport.add({
+					xtype : 'login'
+				});
+			}
+		});
+
+	},
+	signup : function() {
+		Ext.Viewport.removeAll();
+		Ext.Viewport.add({
+			xtype : 'signup'
+		});
+	}
 });

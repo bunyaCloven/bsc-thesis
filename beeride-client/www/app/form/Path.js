@@ -31,7 +31,7 @@ Ext.define('Beeride.form.Path', {
 				layout : 'hbox',
 				items : [ {
 					xtype : 'textfield',
-					name : 'end',
+					name : 'xend',
 					placeHolder : 'End Point',
 					readOnly : true,
 					flex : 1

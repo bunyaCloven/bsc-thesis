@@ -3,8 +3,10 @@ package co.madran.beeride.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,17 +49,23 @@ public class PathHandler {
 
 	@ResponseBody
 	@RequestMapping(path = "add", method = RequestMethod.POST)
-	public String addPathToUser(@RequestParam String username,
-			@RequestParam String name, @RequestParam String start,
-			@RequestParam String end) {
+	public String addPathToUser(@RequestParam Long id,
+			@RequestParam String username, @RequestParam String name,
+			@RequestParam String start, @RequestParam String xend) {
 		JsonObject response = new JsonObject();
 		response.addProperty("success", true);
-		User user = userRepository.findByUsername(username);
 		Path path = new Path();
+		if (id == null) {
+			User user = userRepository.findByUsername(username);
+			path.setUser(user);
+		} else {
+			path = pathRepository.findOne(id);
+		}
 		path.setName(name);
-		path.setUser(user);
-		path.setStart(locationRepository.save(Location.decode(start)));
-		path.setEnd(locationRepository.save(Location.decode(end)));
+		path.setStart(start);
+		path.setEnd(xend);
+		path.setStartLocation(locationRepository.save(Location.decode(start)));
+		path.setEndLocation(locationRepository.save(Location.decode(xend)));
 		pathRepository.save(path);
 		return response.toString();
 	}
@@ -65,5 +73,14 @@ public class PathHandler {
 	@RequestMapping(path = "delete", method = RequestMethod.POST)
 	public void deletePath(@RequestParam Long id) {
 		pathRepository.delete(id);
+	}
+
+	@ResponseBody
+	@RequestMapping(path = "{id}")
+	public String getPath(@PathVariable Long id) {
+		JsonObject response = new JsonObject();
+		response.addProperty("success", true);
+		response.add("data", gson.toJsonTree(pathRepository.findOne(id)));
+		return response.toString();
 	}
 }

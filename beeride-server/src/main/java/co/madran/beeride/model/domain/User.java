@@ -19,6 +19,7 @@ public class User implements UserDetails {
 	private Long id;
 	private String username;
 	private String password;
+	private String email;
 	private String encoder;
 
 	@Override
@@ -54,5 +55,17 @@ public class User implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return null;
+	}
+
+	public void setUsername(String uname) {
+		username = uname;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

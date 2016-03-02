@@ -26,7 +26,14 @@ Ext.define('Beeride.controller.Form', {
 	},
 	update : function(that) {
 		var form = Ext.create('Beeride.form.' + that.up().form);
-		var list = that.up('form');
+		var list = that.up('crud').down('list');
+		if (!list.getSelection().length) {
+			Ext.Msg.alert("", "You need to select something");
+			return;
+		}
+		var id = list.getSelection()[0].internalId;
+		var url = serverAddress + that.up('crud').editUrl + '/' + id;
+		Beeride.util.Ajax.load(form, url);
 		form.add({
 			xtype : 'formtoolbar'
 		});

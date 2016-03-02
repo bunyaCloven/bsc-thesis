@@ -8,8 +8,8 @@ Ext.define('Beeride.view.Main', {
 			items : [ {
 				xtype : 'button',
 				text : 'Log Off',
-				action : 'logOff',
-				align : 'right'
+				itemId : 'logOff',
+				align : 'right',
 			} ]
 		},
 		items : {

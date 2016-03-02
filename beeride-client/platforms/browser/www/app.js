@@ -10,14 +10,18 @@
     will need to resolve manually.
  */
 window.serverAddress = "http://localhost:8080";
+requires = [ 'Ext.MessageBox', 'Beeride.util.Auth', 'Beeride.util.Ajax',
+		'Ext.form.FieldSet', 'Ext.field.Password', 'Ext.dataview.List',
+		'Ext.plugin.ListPaging', 'Beeride.form.Signup',
+		'Ext.ux.field.DateTimePicker', 'Ext.field.Select' ];
 Ext.application({
 	name : 'Beeride',
-	models : [ 'Path', 'Car' ],
-	stores : [ 'Path', 'Car' ],
-	requires : [ 'Ext.MessageBox', 'Beeride.util.Auth' ],
-	controllers : [ 'Login', 'Crud', 'Form', 'Path' ],
+	models : [ 'Path', 'Car', 'Carpool' ],
+	stores : [ 'Path', 'Car', 'Cars', 'Carpool' ],
+	requires : requires,
+	controllers : [ 'Login', 'Crud', 'Form', 'Path', 'List' ],
 	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar', 'FormToolbar',
-			'LocationToolbar' ],
+			'LocationToolbar', 'Cars', 'SignupToolbar' ],
 
 	icon : {
 		'57' : 'resources/icons/Icon.png',
@@ -50,24 +54,5 @@ Ext.application({
 						window.location.reload();
 					}
 				});
-	}
-});
-Ext.define('Override.util.PaintMonitor', {
-	override : 'Ext.util.PaintMonitor',
-	constructor : function(config) {
-		return new Ext.util.paintmonitor.CssAnimation(config);
-	}
-});
-Ext.define('Override.util.SizeMonitor', {
-	override : 'Ext.util.SizeMonitor',
-	constructor : function(config) {
-		var namespace = Ext.util.sizemonitor;
-		if (Ext.browser.is.Firefox) {
-			return new namespace.OverflowChange(config);
-		} else if (Ext.browser.is.WebKit || Ext.browser.is.IE11) {
-			return new namespace.Scroll(config);
-		} else {
-			return new namespace.Default(config);
-		}
 	}
 });

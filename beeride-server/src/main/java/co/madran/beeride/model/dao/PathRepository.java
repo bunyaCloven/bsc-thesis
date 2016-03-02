@@ -2,6 +2,7 @@ package co.madran.beeride.model.dao;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import co.madran.beeride.model.domain.Path;
