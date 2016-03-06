@@ -18,7 +18,6 @@ Ext.define('Beeride.form.Carpool', {
 			xtype : 'selectfield',
 			label : 'path:',
 			mystore : 'Path',
-			placeholder : 'select',
 			name : 'path'
 		}, {
 			flex : 1

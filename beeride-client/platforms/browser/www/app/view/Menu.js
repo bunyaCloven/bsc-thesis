@@ -56,6 +56,17 @@ Ext.define('Beeride.view.Menu', {
 						itemId : 'carpools',
 						text : 'All Carpools',
 						store : 'Carpools',
+						listCallback : 'Beeride.view.Carpool',
+						editUrl : '/carpools',
+						paging : true,
+						dni : true
+					}, {
+						xtype : 'button',
+						itemId : 'seats',
+						text : 'My Carpools',
+						store : 'Seats',
+						listCallback : 'Beeride.view.Seat',
+						editUrl : '/seats',
 						paging : true,
 						dni : true
 					} ]

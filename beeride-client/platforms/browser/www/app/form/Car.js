@@ -2,7 +2,6 @@ Ext.define('Beeride.form.Car', {
 	extend : 'Ext.form.Panel',
 	config : {
 		layout : 'vbox',
-		// xtype : 'fieldset',
 		url : serverAddress + '/cars/add',
 		items : [ {
 			xtype : 'hiddenfield',
@@ -15,6 +14,10 @@ Ext.define('Beeride.form.Car', {
 			xtype : 'textfield',
 			placeHolder : 'Brand & Model',
 			name : 'brand'
+		}, {
+			xtype : 'numberfield',
+			placeHolder : 'Number of Passengers',
+			name : 'passengerCount'
 		}, {
 			flex : 1
 		} ]

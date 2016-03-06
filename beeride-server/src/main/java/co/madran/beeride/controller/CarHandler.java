@@ -49,7 +49,7 @@ public class CarHandler {
 	@RequestMapping(path = "add", method = RequestMethod.POST)
 	public String addCarToUser(@RequestParam Long id,
 			@RequestParam String username, @RequestParam String name,
-			@RequestParam String brand) {
+			@RequestParam String brand, @RequestParam Integer passengerCount) {
 		JsonObject response = new JsonObject();
 		response.addProperty("success", true);
 
@@ -62,6 +62,7 @@ public class CarHandler {
 		}
 		car.setName(name);
 		car.setBrand(brand);
+		car.setPassengerCount(passengerCount);
 		carRepository.save(car);
 		return response.toString();
 	}

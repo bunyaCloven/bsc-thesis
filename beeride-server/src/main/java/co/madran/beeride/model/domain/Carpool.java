@@ -1,5 +1,6 @@
 package co.madran.beeride.model.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,12 +15,16 @@ import com.google.gson.annotations.Expose;
 @Entity
 public class Carpool {
 	private @Id @Expose @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+	private static SimpleDateFormat sdf = new SimpleDateFormat("MM dd hh:mm:ss yyyy");
 	private User user;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date time;
+	private Date timex;
+	private @Expose String time;
 	private @Expose String name;
 	private Path pathx;
 	private @Expose Long path;
+	private Car carx;
+	private @Expose Long car;
 
 	public void setName(String name) {
 		this.name = name;
@@ -30,11 +35,33 @@ public class Carpool {
 	}
 
 	public void setTime(Date time) {
-		this.time = time;
+		this.timex = time;
+		this.time = sdf.format(time);
 	}
 
 	public void setPath(Path path) {
 		this.pathx = path;
 		this.path = path.getId();
+	}
+
+	public void setCar(Car car) {
+		this.carx = car;
+		this.car = car.getId();
+	}
+
+	public Car getCar() {
+		return carx;
+	}
+
+	public Date getTime() {
+		return timex;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Long getId() {
+		return id;
 	}
 }

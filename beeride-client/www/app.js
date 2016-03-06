@@ -16,10 +16,10 @@ requires = [ 'Ext.MessageBox', 'Beeride.util.Auth', 'Beeride.util.Ajax',
 		'Ext.ux.field.DateTimePicker', 'Ext.field.Select' ];
 Ext.application({
 	name : 'Beeride',
-	models : [ 'Path', 'Car', 'Carpool' ],
-	stores : [ 'Path', 'Car', 'Cars', 'Carpool', 'Carpools' ],
+	models : [ 'Path', 'Car', 'Carpool', 'Seat' ],
+	stores : [ 'Path', 'Car', 'Cars', 'Carpool', 'Carpools', 'Seats' ],
 	requires : requires,
-	controllers : [ 'Login', 'Crud', 'Form', 'Path', 'List' ],
+	controllers : [ 'Login', 'Crud', 'Form', 'Path', 'List', 'Carpool' ],
 	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar', 'FormToolbar',
 			'LocationToolbar', 'Cars', 'SignupToolbar' ],
 

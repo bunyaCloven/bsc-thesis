@@ -1,10 +1,9 @@
 package co.madran.beeride.controller;
 
-import java.util.LinkedList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,7 +49,7 @@ public class CarpoolHandler {
 	@RequestMapping(path = "add", method = RequestMethod.POST)
 	public String addCarpoolToUser(@RequestParam Long id,
 			@RequestParam String username, @RequestParam String name,
-			@RequestParam String time, @RequestParam Long path) {
+			@RequestParam Date time, @RequestParam Long path) {
 		JsonObject response = new JsonObject();
 		response.addProperty("success", true);
 
@@ -65,6 +64,7 @@ public class CarpoolHandler {
 			carpool.setPath(pathRepository.findOne(path));
 		}
 		carpool.setName(name);
+		carpool.setTime(time);
 		carpoolRepository.save(carpool);
 		return response.toString();
 	}
@@ -84,12 +84,14 @@ public class CarpoolHandler {
 			@RequestParam Integer limit) {
 		JsonObject response = new JsonObject();
 		response.addProperty("success", true);
-		Page<Carpool> carpoolPage = carpoolRepository.findAll(new PageRequest(
+		// Page<Carpool> carpoolPage = carpoolRepository.findNonFull(new
+		// PageRequest(
+		// page - 1, limit));
+		List<Carpool> carpools = carpoolRepository.findNonFull(new PageRequest(
 				page - 1, limit));
-		List<Carpool> carpools = new LinkedList<>();
-		for (Carpool car : carpoolPage) {
-			carpools.add(car);
-		}
+		// for (Carpool car : carpoolPage) {
+		// carpools.add(car);
+		// }
 		response.add("data", gson.toJsonTree(carpools));
 		return response.toString();
 	}

@@ -42,7 +42,7 @@ Ext.define('Beeride.controller.Form', {
 	deletex : function(that) {
 		var list = that.up('panel').down('list');
 		if (!list.getSelection().length) {
-			Ext.Msg.alert("", "you need to select something to delete");
+			Ext.Msg.alert("", "You need to select something to delete.");
 			return;
 		}
 		var id = list.getSelection()[0].internalId;

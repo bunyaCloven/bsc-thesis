@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(final WebSecurity web) throws Exception {
-		final String[] ignoredPatterns = { "/signup" };
+		final String[] ignoredPatterns = { "/signup", "/cologin" };
 		web.ignoring().antMatchers(ignoredPatterns);
 	}
 }

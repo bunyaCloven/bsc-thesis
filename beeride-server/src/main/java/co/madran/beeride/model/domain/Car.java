@@ -13,6 +13,7 @@ public class Car {
 	private @Expose String name;
 	private User user;
 	private @Expose Integer passengerCount;
+	private Integer currentPassengers;
 	private @Expose String brand;
 
 	public void setName(String name) {
@@ -25,5 +26,24 @@ public class Car {
 
 	public void setBrand(String brand) {
 		this.brand = brand;
+	}
+
+	public void setPassengerCount(Integer count) {
+		passengerCount = count;
+		if (currentPassengers == null) {
+			currentPassengers = 0;
+		}
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public Integer getPassengerCount() {
+		return passengerCount;
+	}
+
+	public Integer getCurrentPassengers() {
+		return currentPassengers;
 	}
 }

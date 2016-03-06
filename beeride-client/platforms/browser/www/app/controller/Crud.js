@@ -31,6 +31,7 @@ Ext.define('Beeride.controller.Crud', {
 			return;
 		}
 		var store = Ext.data.StoreManager.lookup(that.store);
+		store.currentPage=1;
 		var proxy = store.getProxy();
 		proxy.setExtraParam('username', Beeride.util.Auth.getUsername());
 		store.load();
