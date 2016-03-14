@@ -14,7 +14,8 @@ Ext.define('Beeride.view.LocationToolbar', {
 				var lng = map.center.lng();
 				var button = panel.requestbutton;
 				var textfield = button.up('panel').down('textfield');
-				textfield.setValue(lat+','+lng);
+				textfield.setValue(lat + ',' + lng);
+				panel.up().remove(panel);
 			}
 		}, {
 			xtype : 'spacer'

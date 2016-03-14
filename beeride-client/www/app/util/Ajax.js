@@ -3,6 +3,9 @@ Ext.define('Beeride.util.Ajax', {
 	load : function(form, url) {
 		Ext.Ajax.request({
 			url : url,
+			params : {
+				username : Beeride.util.Auth.getUsername()
+			},
 			success : function(response) {
 				var data = JSON.parse(response.responseText);
 				for ( var x in data.data) {

@@ -50,6 +50,10 @@ Ext.define('Beeride.controller.Login', {
 				var proxy = store.getProxy();
 				proxy.setExtraParam('username', Beeride.util.Auth.getUsername());
 				var loaded = store.load();
+				var store2 = Ext.data.StoreManager.lookup('Car');
+				var proxy2 = store2.getProxy();
+				proxy2.setExtraParam('username', Beeride.util.Auth.getUsername());
+				var loaded = store2.load();
 			},
 			failure : function(form, result) {
 				Ext.Msg.alert("", "Sign in failed", Ext.emptyFn);

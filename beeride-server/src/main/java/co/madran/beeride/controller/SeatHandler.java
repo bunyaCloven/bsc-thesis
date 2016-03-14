@@ -77,9 +77,12 @@ public class SeatHandler {
 
 	@ResponseBody
 	@RequestMapping(path = "{id}")
-	public String getSeatCarpool(@PathVariable Long id) {
+	public String getSeatCarpool(@PathVariable Long id,
+			@RequestParam String username) {
 		JsonObject response = new JsonObject();
-		Seat seat = seatRepository.findOne(id);
+		Carpool carpool = carpoolRepository.findOne(id);
+		User user = userRepository.findByUsername(username);
+		Seat seat = seatRepository.findByUserAndCarpool(user, carpool);
 		JsonObject seatObject = new JsonObject();
 		seatObject.addProperty("id", seat.getCarpool().getId());
 		seatObject.addProperty("name", seat.getCarpool().getName());

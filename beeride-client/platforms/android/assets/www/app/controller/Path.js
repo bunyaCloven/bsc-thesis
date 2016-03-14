@@ -17,7 +17,6 @@ Ext.define('Beeride.controller.Path', {
 		});
 	},
 	mapInit : function(that, e, eOpts) {
-		debugger;
 		// var myOptions = {
 		// zoom : 12,
 		// mapTypeId : google.maps.MapTypeId.ROADMAP

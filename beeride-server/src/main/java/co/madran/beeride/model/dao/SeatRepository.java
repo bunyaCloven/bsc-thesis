@@ -17,4 +17,6 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
 	@Query("select s.carpool from Seat s where s.user=:user")
 	List<Carpool> findCarpools(@Param(value = "user") User user,
 			Pageable pageable);
+
+	Carpool findByCarpoolAndUser(Carpool carpool, User user);
 }

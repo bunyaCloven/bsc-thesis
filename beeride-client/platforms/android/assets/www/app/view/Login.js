@@ -16,12 +16,13 @@ Ext.define('Beeride.view.Login', {
 				placeHolder : 'Password',
 				itemId : 'password'
 			}, {
-				ui : 'plain',
 				xtype : 'button',
 				itemId : 'login',
-				ui : 'action',
-				padding : '10px',
 				text : 'login'
+			}, {
+				xtype : 'button',
+				text : 'signup',
+				itemId : 'signup'
 			} ]
 		} ]
 	}
