@@ -21,7 +21,7 @@ Ext.application({
 	requires : requires,
 	controllers : [ 'Login', 'Crud', 'Form', 'Path', 'List', 'Carpool' ],
 	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar', 'FormToolbar',
-			'LocationToolbar', 'Cars', 'SignupToolbar' ],
+			'LocationToolbar', 'Cars', 'SignupToolbar', 'SearchToolbar' ],
 
 	icon : {
 		'57' : 'resources/icons/Icon.png',

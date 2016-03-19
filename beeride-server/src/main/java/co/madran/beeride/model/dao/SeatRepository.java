@@ -14,7 +14,7 @@ import co.madran.beeride.model.domain.User;
 public interface SeatRepository extends JpaRepository<Seat, Long> {
 	Seat findByUserAndCarpool(User user, Carpool carpool);
 
-	@Query("select s.carpool from Seat s where s.user=:user")
+	@Query("select s.carpool from Seat s where s.user=:user and s.carpool.timex>CURRENT_TIMESTAMP")
 	List<Carpool> findCarpools(@Param(value = "user") User user,
 			Pageable pageable);
 

@@ -17,6 +17,7 @@ import co.madran.beeride.model.dao.CarpoolRepository;
 import co.madran.beeride.model.dao.PathRepository;
 import co.madran.beeride.model.dao.UserRepository;
 import co.madran.beeride.model.domain.Carpool;
+import co.madran.beeride.model.domain.Location;
 import co.madran.beeride.model.domain.User;
 
 import com.google.gson.Gson;
@@ -86,14 +87,29 @@ public class CarpoolHandler {
 	@ResponseBody
 	@RequestMapping(path = "all")
 	public String allCarpools(@RequestParam Integer page,
-			@RequestParam Integer limit) {
+			@RequestParam Integer limit,
+			@RequestParam(required = false) String name,
+			@RequestParam(required = false) String start) {
 		JsonObject response = new JsonObject();
 		response.addProperty("success", true);
 		// Page<Carpool> carpoolPage = carpoolRepository.findNonFull(new
 		// PageRequest(
 		// page - 1, limit));
-		List<Carpool> carpools = carpoolRepository.findNonFull(new PageRequest(
-				page - 1, limit));
+		List<Carpool> carpools;
+		if (name != null) {
+			if (start != null && start != "") {
+				Location location = Location.decode(start);
+				carpools = carpoolRepository.findNonFullFiltered(name,
+						location.getLatitude(), location.getLongitude(),
+						new PageRequest(page - 1, limit));
+			} else {
+				carpools = carpoolRepository.findNonFullByName(name,
+						new PageRequest(page - 1, limit));
+			}
+		} else {
+			carpools = carpoolRepository.findNonFull(new PageRequest(page - 1,
+					limit));
+		}
 		// for (Carpool car : carpoolPage) {
 		// carpools.add(car);
 		// }

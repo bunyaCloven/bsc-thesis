@@ -36,7 +36,8 @@ public class DatabaseConfig {
 	public DataSource dataSource() {
 		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:postgresql://localhost/beeride");
+		dataSource
+				.setUrl("jdbc:postgresql://localhost/beeride?useUnicode=yes&amp;characterEncoding=UTF-8");
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("postgres");
 		return dataSource;

@@ -30,7 +30,9 @@ Ext.define('Beeride.view.Menu', {
 						itemId : 'carpool',
 						text : 'My Carpools',
 						store : 'Carpool',
+						listCallback : 'Beeride.view.DriverCarpool',
 						deleteUrl : '/carpools/delete',
+						doubleClickLoad : '/carpools',
 						editUrl : '/carpools'
 					} ]
 				});
@@ -57,7 +59,9 @@ Ext.define('Beeride.view.Menu', {
 						text : 'All Carpools',
 						store : 'Carpools',
 						listCallback : 'Beeride.view.Carpool',
-						editUrl : '/carpools',
+						doubleClickLoad : '/carpools',
+						search : true,
+						searchPage : 'Beeride.view.CarpoolFilter',
 						paging : true,
 						dni : true
 					}, {
@@ -66,7 +70,7 @@ Ext.define('Beeride.view.Menu', {
 						text : 'My Carpools',
 						store : 'Seats',
 						listCallback : 'Beeride.view.Seat',
-						editUrl : '/seats',
+						doubleClickLoad : '/seats',
 						paging : true,
 						dni : true
 					} ]

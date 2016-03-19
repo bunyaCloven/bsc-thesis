@@ -9,6 +9,7 @@ Ext.define('Beeride.controller.List', {
 	},
 	listshow : function(that) {
 		that.store = Ext.data.StoreManager.lookup(that.mystore);
+		store.currentPage = 1;
 		var proxy = that.store.getProxy();
 		proxy.setExtraParam('username', Beeride.util.Auth.getUsername());
 		var loaded = that.store.load();

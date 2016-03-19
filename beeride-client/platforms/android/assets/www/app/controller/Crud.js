@@ -17,12 +17,13 @@ Ext.define('Beeride.controller.Crud', {
 	crud : function(that, e, eOpts) {
 		Ext.ComponentQuery.query('main')[0].push({
 			xtype : 'crud',
+			doubleClickLoad : that.doubleClickLoad,
 			listCallback : that.listCallback,
 			deleteUrl : that.deleteUrl,
 			editUrl : that.editUrl,
 			itemId : that._itemId,
-			store : that.store,
 			paging : that.paging,
+			store : that.store,
 			dni : that.dni
 		});
 	},
@@ -31,7 +32,7 @@ Ext.define('Beeride.controller.Crud', {
 			return;
 		}
 		var store = Ext.data.StoreManager.lookup(that.store);
-		store.currentPage=1;
+		store.currentPage = 1;
 		var proxy = store.getProxy();
 		proxy.setExtraParam('username', Beeride.util.Auth.getUsername());
 		store.load();
@@ -48,7 +49,7 @@ Ext.define('Beeride.controller.Crud', {
 			flex : 1,
 			store : store,
 			plugins : plugins,
-			editUrl : that.editUrl,
+			editUrl : that.doubleClickLoad,
 			callback : that.listCallback
 		});
 		if (!that.dni) {
