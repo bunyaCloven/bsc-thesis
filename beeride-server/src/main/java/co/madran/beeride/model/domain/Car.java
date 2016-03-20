@@ -13,8 +13,8 @@ public class Car {
 	private @Expose String name;
 	private User user;
 	private @Expose Integer passengerCount;
-	private Integer currentPassengers;
 	private @Expose String brand;
+	private @Expose String plate;
 
 	public void setName(String name) {
 		this.name = name;
@@ -28,22 +28,27 @@ public class Car {
 		this.brand = brand;
 	}
 
-	public void setPassengerCount(Integer count) {
-		passengerCount = count;
-		if (currentPassengers == null) {
-			currentPassengers = 0;
-		}
-	}
-
 	public Long getId() {
 		return id;
+	}
+
+	public void setPassengerCount(Integer count) {
+		this.passengerCount = count;
 	}
 
 	public Integer getPassengerCount() {
 		return passengerCount;
 	}
 
-	public Integer getCurrentPassengers() {
-		return currentPassengers;
+	public String getPlate() {
+		return plate;
+	}
+
+	public void setPlate(String plate) {
+		this.plate = plate;
+	}
+
+	public String getBrand() {
+		return brand;
 	}
 }

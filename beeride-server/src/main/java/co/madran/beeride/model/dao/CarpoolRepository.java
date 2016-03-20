@@ -16,19 +16,19 @@ public interface CarpoolRepository extends JpaRepository<Carpool, Long> {
 	public List<Carpool> findByUser(User user);
 
 	@Query("select cp from Carpool cp "
-			+ "where cp.carx.passengerCount>cp.carx.currentPassengers "
+			+ "where cp.carx.passengerCount>cp.currentPassengers "
 			+ "and cp.timex>CURRENT_TIMESTAMP")
 	public List<Carpool> findNonFull(Pageable pageable);
 
 	@Query("select cp from Carpool cp "
-			+ "where cp.carx.passengerCount>cp.carx.currentPassengers "
+			+ "where cp.carx.passengerCount>cp.currentPassengers "
 			+ "and cp.timex>CURRENT_TIMESTAMP "
 			+ "and cp.name like concat('%',:name,'%') ")
 	public List<Carpool> findNonFullByName(@Param(value = "name") String name,
 			Pageable pageRequest);
 
 	@Query("select cp from Carpool cp "
-			+ "where cp.carx.passengerCount>cp.carx.currentPassengers "
+			+ "where cp.carx.passengerCount>cp.currentPassengers "
 			+ "and cp.timex>CURRENT_TIMESTAMP "
 			+ "and cp.name like concat('%',:name,'%') "
 			+ "order by abs(cp.pathx.startLocation.latitude-:latitude)"

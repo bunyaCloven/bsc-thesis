@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="co.madran.beeride.security.SecurityConfig" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/security/SecurityConfig.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="128" width="121" x="169" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="co.madran.beeride.Starter" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/Starter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="92" width="88" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="co.madran.beeride.security.UserService" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/security/UserService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="92" width="170" x="1364" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="co.madran.beeride.security.SecurityRequestHandler" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/security/SecurityRequestHandler.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="146" width="272" x="1574" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="co.madran.beeride.model.domain.Path" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/model/domain/Path.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="272" width="129" x="1537" y="661"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="co.madran.beeride.model.domain.User" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/model/domain/User.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="344" width="214" x="1865" y="991"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="co.madran.beeride.model.domain.Car" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/model/domain/Car.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="290" width="138" x="1706" y="661"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="co.madran.beeride.model.domain.Location" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/model/domain/Location.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="236" width="118" x="1537" y="991"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="co.madran.beeride.model.domain.Carpool" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/model/domain/Carpool.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="362" width="118" x="1747" y="259"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="co.madran.beeride.model.domain.Seat" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/model/domain/Seat.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="146" width="118" x="1886" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="co.madran.beeride.controller.CarpoolHandler" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/controller/CarpoolHandler.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="182" width="238" x="1086" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="co.madran.beeride.controller.PathHandler" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/controller/PathHandler.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="164" width="216" x="2044" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="co.madran.beeride.controller.SeatHandler" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/controller/SeatHandler.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="164" width="170" x="619" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="co.madran.beeride.controller.CarHandler" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/controller/CarHandler.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="182" width="217" x="829" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="co.madran.beeride.config.DatabaseConfig" project="beeride-server" 
+    file="/beeride-server/src/main/java/co/madran/beeride/config/DatabaseConfig.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="164" width="249" x="330" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="16">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="17" name="user"/>      
+      <multiplicity id="18" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="19">    
+    <bendpoint x="1895" y="259"/>    
+    <bendpoint x="1895" y="661"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="20" name="user"/>      
+      <multiplicity id="21" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="23" name="startLocation"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="26" name="carx"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="29" name="pathx"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <bendpoint x="1874" y="661"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="32" name="user"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="35" name="endLocation"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="38" name="user"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="41" name="carpool"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

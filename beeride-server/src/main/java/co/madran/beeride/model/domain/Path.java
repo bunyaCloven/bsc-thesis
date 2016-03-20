@@ -46,4 +46,8 @@ public class Path {
 	public Long getId() {
 		return id;
 	}
+
+	public String getStart() {
+		return start;
+	}
 }

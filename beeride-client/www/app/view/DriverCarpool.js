@@ -8,12 +8,16 @@ Ext.define('Beeride.view.DriverCarpool', {
 			name : 'id'
 		}, {
 			xtype : 'label',
-			html : 'Name: ',
+			html : '<b>Name: </b>',
 			name : 'name'
 		}, {
 			xtype : 'label',
-			html : 'Time: ',
-			name : 'time',
+			html : '<b>Time: </b>',
+			name : 'timex',
+		}, {
+			xtype : 'label',
+			html : '<b>Seats: </b>',
+			name : 'seats'
 		}, {
 			flex : 1
 		} ]

@@ -71,6 +71,9 @@ public class CarpoolHandler {
 		}
 		carpool.setName(name);
 		carpool.setTime(time);
+		if (carpool.getCurrentPassengers() == null) {
+			carpool.setCurrentPassengers(0);
+		}
 		carpoolRepository.save(carpool);
 		return response.toString();
 	}
@@ -122,7 +125,27 @@ public class CarpoolHandler {
 	public String getCar(@PathVariable Long id) {
 		JsonObject response = new JsonObject();
 		response.addProperty("success", true);
-		response.add("data", gson.toJsonTree(carpoolRepository.findOne(id)));
+		Carpool carpool = carpoolRepository.findOne(id);
+		JsonObject cp = (JsonObject) gson.toJsonTree(carpool);
+		cp.addProperty("seats", carpool.getCurrentPassengers() + "/"
+				+ carpool.getCar().getPassengerCount());
+		cp.addProperty("plate", carpool.getCar().getPlate());
+		cp.addProperty("brand", carpool.getCar().getBrand());
+		cp.addProperty("start", carpool.getPath().getStart());
+		response.add("data", cp);
+		return response.toString();
+	}
+
+	@ResponseBody
+	@RequestMapping(path = "driverView/{id}")
+	public String getCarOfDriver(@PathVariable Long id) {
+		JsonObject response = new JsonObject();
+		response.addProperty("success", true);
+		Carpool carpool = carpoolRepository.findOne(id);
+		JsonObject cp = (JsonObject) gson.toJsonTree(carpool);
+		cp.addProperty("seats", carpool.getCurrentPassengers() + "/"
+				+ carpool.getCar().getPassengerCount());
+		response.add("data", cp);
 		return response.toString();
 	}
 }

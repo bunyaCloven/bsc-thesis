@@ -15,16 +15,18 @@ import com.google.gson.annotations.Expose;
 @Entity
 public class Carpool {
 	private @Id @Expose @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
-	private static SimpleDateFormat sdf = new SimpleDateFormat("MM dd hh:mm:ss yyyy");
+	private static SimpleDateFormat sdf = new SimpleDateFormat(
+			"MM dd hh:mm:ss yyyy");
 	private User user;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date timex;
+	private @Expose Date timex;
 	private @Expose String time;
 	private @Expose String name;
 	private Path pathx;
 	private @Expose Long path;
 	private Car carx;
 	private @Expose Long car;
+	private @Expose Integer currentPassengers;
 
 	public void setName(String name) {
 		this.name = name;
@@ -63,5 +65,17 @@ public class Carpool {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Integer getCurrentPassengers() {
+		return currentPassengers;
+	}
+
+	public void setCurrentPassengers(int count) {
+		currentPassengers = count;
+	}
+
+	public Path getPath() {
+		return pathx;
 	}
 }

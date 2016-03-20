@@ -32,7 +32,7 @@ Ext.define('Beeride.view.Menu', {
 						store : 'Carpool',
 						listCallback : 'Beeride.view.DriverCarpool',
 						deleteUrl : '/carpools/delete',
-						doubleClickLoad : '/carpools',
+						doubleClickLoad : '/carpools/driverView',
 						editUrl : '/carpools'
 					} ]
 				});

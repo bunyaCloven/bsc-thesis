@@ -5,8 +5,8 @@ Ext.define('Beeride.controller.Path', {
 			'button#locate' : {
 				tap : 'setLocation'
 			},
-			'xmap' : {
-				initialize : 'mapInit'
+			'map#seatmap' : {
+				maprender : 'mapInit'
 			}
 		}
 	},
@@ -17,18 +17,15 @@ Ext.define('Beeride.controller.Path', {
 		});
 	},
 	mapInit : function(that, e, eOpts) {
-		// var myOptions = {
-		// zoom : 12,
-		// mapTypeId : google.maps.MapTypeId.ROADMAP
-		// };
-		// that.map = new google.maps.Map(that.down('#map').element.dom,
-		// myOptions);
-		/*
-		 * navigator.geolocation.getCurrentPosition(function(position) { var
-		 * latlng = new google.maps.LatLng(position.coords.latitude,
-		 * position.coords.longitude); var myOptions = { zoom : 12, center :
-		 * latlng, mapTypeId : google.maps.MapTypeId.ROADMAP }; that.map = new
-		 * google.maps.Map(that.down('#map').element.dom, myOptions); });
-		 */
+		var values = that.up('formpanel').down('[name="start"]').getValue()
+				.split(',');
+		that.setMapCenter({
+			latitude : values[0],
+			longitude : values[1]
+		});
+		var marker1 = new google.maps.Marker({
+			position : new google.maps.LatLng(values[0], values[1]),
+			map : that.getMap(),
+		});
 	}
 });

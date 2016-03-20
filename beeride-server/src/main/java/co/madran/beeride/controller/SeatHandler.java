@@ -48,12 +48,12 @@ public class SeatHandler {
 			response.addProperty("success", false);
 			response.addProperty("message",
 					"You have already signed to this carpool.");
-		} else if (car.getCurrentPassengers() < car.getPassengerCount()) {
+		} else if (carpool.getCurrentPassengers() < car.getPassengerCount()) {
 			Seat seat = new Seat();
 			seat.setUser(user);
 			seat.setCarpool(carpool);
 			seatRepository.save(seat);
-			car.setPassengerCount(car.getPassengerCount() + 1);
+			carpool.setCurrentPassengers(carpool.getCurrentPassengers() + 1);
 			carRepository.save(car);
 			response.addProperty("success", true);
 		} else {
@@ -87,6 +87,11 @@ public class SeatHandler {
 		seatObject.addProperty("id", seat.getCarpool().getId());
 		seatObject.addProperty("name", seat.getCarpool().getName());
 		seatObject.addProperty("time", seat.getCarpool().getTime().toString());
+		seatObject.addProperty("seats", carpool.getCurrentPassengers() + "/"
+				+ carpool.getCar().getPassengerCount());
+		seatObject.addProperty("plate", seat.getCarpool().getCar().getPlate());
+		seatObject.addProperty("brand", seat.getCarpool().getCar().getBrand());
+		seatObject.addProperty("start", seat.getCarpool().getPath().getStart());
 		response.addProperty("success", true);
 		response.add("data", seatObject);
 		return response.toString();
@@ -99,6 +104,7 @@ public class SeatHandler {
 		JsonObject response = new JsonObject();
 		User user = userRepository.findByUsername(username);
 		Carpool carpool = carpoolRepository.findOne(id);
+		carpool.setCurrentPassengers(carpool.getCurrentPassengers() - 1);
 		Seat seat = seatRepository.findByUserAndCarpool(user, carpool);
 		seatRepository.delete(seat);
 		response.addProperty("success", true);

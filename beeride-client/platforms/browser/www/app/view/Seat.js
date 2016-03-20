@@ -7,6 +7,9 @@ Ext.define('Beeride.view.Seat', {
 			xtype : 'hiddenfield',
 			name : 'id'
 		}, {
+			xtype : 'hiddenfield',
+			name : 'start'
+		}, {
 			xtype : 'label',
 			html : 'Name: ',
 			name : 'name'
@@ -15,6 +18,21 @@ Ext.define('Beeride.view.Seat', {
 			html : 'Time: ',
 			name : 'time',
 		}, {
+			xtype : 'label',
+			html : 'Seats: ',
+			name : 'seats'
+		}, {
+			xtype : 'label',
+			html : 'Plate: ',
+			name : 'plate'
+		}, {
+			xtype : 'label',
+			html : 'Car Brand & Model: ',
+			name : 'brand'
+		}, {
+			xtype : 'map',
+			itemId : 'seatmap',
+			disabled : 'true',
 			flex : 1
 		}, {
 			xtype : 'button',
