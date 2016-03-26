@@ -25,6 +25,10 @@
 		{
 			"path": "touch-2.4.2/resources/css/sencha-touch.css",
 			"update": "delta"
+		},
+		{
+			"path": "style/app.css",
+			"update": "delta"
 		}
 	],
 	"appCache": {
