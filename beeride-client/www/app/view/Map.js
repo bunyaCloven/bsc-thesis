@@ -23,11 +23,15 @@ Ext.define('Beeride.view.Map', {
 					geocoder.geocode({
 						address : value
 					}, function(result, status) {
-						var location = result[0].geometry.location;
-						map.setMapCenter({
-							latitude : location.lat(),
-							longitude : location.lng()
-						});
+						if (status !== "OK") {
+							Ext.Msg.alert("", "No location found.");
+						} else {
+							var location = result[0].geometry.location;
+							map.setMapCenter({
+								latitude : location.lat(),
+								longitude : location.lng()
+							});
+						}
 					});
 				}
 			} ]
