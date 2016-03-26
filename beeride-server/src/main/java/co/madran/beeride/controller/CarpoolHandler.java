@@ -132,6 +132,7 @@ public class CarpoolHandler {
 		cp.addProperty("plate", carpool.getCar().getPlate());
 		cp.addProperty("brand", carpool.getCar().getBrand());
 		cp.addProperty("start", carpool.getPath().getStart());
+		cp.addProperty("end", carpool.getPath().getEnd());
 		response.add("data", cp);
 		return response.toString();
 	}

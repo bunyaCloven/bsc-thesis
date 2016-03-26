@@ -9,7 +9,7 @@
     changes and its generated code, it will produce a "merge conflict" that you
     will need to resolve manually.
  */
-window.serverAddress = "http://localhost:8080";
+window.serverAddress = "http://beeride.madran.co";
 requires = [ 'Ext.MessageBox', 'Beeride.util.Auth', 'Beeride.util.Ajax',
 		'Ext.form.FieldSet', 'Ext.field.Password', 'Ext.dataview.List',
 		'Ext.plugin.ListPaging', 'Beeride.form.Signup',
@@ -21,7 +21,7 @@ Ext.application({
 	requires : requires,
 	controllers : [ 'Login', 'Crud', 'Form', 'Path', 'List', 'Carpool' ],
 	views : [ 'Main', 'Login', 'Map', 'Crud', 'ListToolbar', 'FormToolbar',
-			'LocationToolbar', 'Cars', 'SignupToolbar' ],
+			'LocationToolbar', 'Cars', 'SignupToolbar', 'SearchToolbar' ],
 
 	icon : {
 		'57' : 'resources/icons/Icon.png',

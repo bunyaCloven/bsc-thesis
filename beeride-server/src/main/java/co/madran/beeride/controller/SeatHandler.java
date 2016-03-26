@@ -92,6 +92,7 @@ public class SeatHandler {
 		seatObject.addProperty("plate", seat.getCarpool().getCar().getPlate());
 		seatObject.addProperty("brand", seat.getCarpool().getCar().getBrand());
 		seatObject.addProperty("start", seat.getCarpool().getPath().getStart());
+		seatObject.addProperty("end", seat.getCarpool().getPath().getEnd());
 		response.addProperty("success", true);
 		response.add("data", seatObject);
 		return response.toString();

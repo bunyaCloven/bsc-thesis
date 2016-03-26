@@ -6,6 +6,9 @@ Ext.define('Beeride.controller.Path', {
 				tap : 'setLocation'
 			},
 			'map#seatmap' : {
+				maprender : 'seatmap'
+			},
+			'xmap map' : {
 				maprender : 'mapInit'
 			}
 		}
@@ -13,12 +16,13 @@ Ext.define('Beeride.controller.Path', {
 	setLocation : function(that, e, eOpts) {
 		Ext.ComponentQuery.query('main')[0].add({
 			xtype : 'xmap',
+			itemId : 'selection',
 			requestbutton : that
 		});
 	},
-	mapInit : function(that, e, eOpts) {
-		var values = that.up('formpanel').down('[name="start"]').getValue()
-				.split(',');
+	seatmap : function(that, e, eOpts) {
+		var values = that.up('formpanel').down('[name="' + that.target + '"]')
+				.getValue().split(',');
 		that.setMapCenter({
 			latitude : values[0],
 			longitude : values[1]
@@ -27,5 +31,9 @@ Ext.define('Beeride.controller.Path', {
 			position : new google.maps.LatLng(values[0], values[1]),
 			map : that.getMap(),
 		});
+	},
+	mapInit : function(that, e, eOpts) {
+		new google.maps.places.PlacesService(that.getMap());
+		debugger;
 	}
 });

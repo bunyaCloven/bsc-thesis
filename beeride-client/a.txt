@@ -1,0 +1,4 @@
+cordova build android --release
+jarsigner android-release-unsigned.apk beeridel1
+/home/bunya/DAVON_LIB/android-sdk-linux/build-tools/23.0.2/zipalign -v 4
+ android-release-unsigned.apk android-release-aligned.apk 

@@ -50,4 +50,8 @@ public class Path {
 	public String getStart() {
 		return start;
 	}
+
+	public String getEnd() {
+		return xend;
+	}
 }

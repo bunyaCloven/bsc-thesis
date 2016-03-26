@@ -1,10 +1,13 @@
 package co.madran.beeride.config;
 
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -37,9 +40,9 @@ public class DatabaseConfig {
 		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource
-				.setUrl("jdbc:postgresql://localhost/beeride?useUnicode=yes&amp;characterEncoding=UTF-8");
-		dataSource.setUsername("postgres");
-		dataSource.setPassword("postgres");
+				.setUrl("jdbc:postgresql://beeride.crvevuorggnu.eu-central-1.rds.amazonaws.com/beeride?useUnicode=yes&amp;characterEncoding=UTF-8");
+		dataSource.setUsername("bunya");
+		dataSource.setPassword("candan99");
 		return dataSource;
 	}
 
@@ -54,5 +57,14 @@ public class DatabaseConfig {
 	@Bean
 	public UserDetailsService userService() {
 		return new UserService();
+	}
+
+	@Bean
+	public EmbeddedServletContainerFactory tomcat() {
+		TomcatEmbeddedServletContainerFactory tomcat;
+		tomcat = new TomcatEmbeddedServletContainerFactory();
+		tomcat.setPort(environment.getProperty("server.port", Integer.class));
+		tomcat.setSessionTimeout(10, TimeUnit.MINUTES);
+		return tomcat;
 	}
 }

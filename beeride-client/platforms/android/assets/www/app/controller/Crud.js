@@ -19,10 +19,12 @@ Ext.define('Beeride.controller.Crud', {
 			xtype : 'crud',
 			doubleClickLoad : that.doubleClickLoad,
 			listCallback : that.listCallback,
+			searchPage : that.searchPage,
 			deleteUrl : that.deleteUrl,
 			editUrl : that.editUrl,
 			itemId : that._itemId,
 			paging : that.paging,
+			search : that.search,
 			store : that.store,
 			dni : that.dni
 		});
@@ -56,6 +58,13 @@ Ext.define('Beeride.controller.Crud', {
 			that.add({
 				xtype : 'listtoolbar',
 				form : that.store
+			});
+		}
+		if (that.search) {
+			that.add({
+				xtype : 'searchtoolbar',
+				form : that.store,
+				searchPage : that.searchPage
 			});
 		}
 	},
