@@ -14,58 +14,58 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Table(name = "xUser")
 public class User implements UserDetails {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String username;
-	private String password;
-	private String email;
-	private String encoder;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String username;
+  private String password;
+  private String email;
+  private String encoder;
 
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
 
-	@Override
-	public String getUsername() {
-		return username;
-	}
+  @Override
+  public String getUsername() {
+    return username;
+  }
 
-	@Override
-	public String getPassword() {
-		return password;
-	}
+  @Override
+  public String getPassword() {
+    return password;
+  }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
-	}
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return null;
+  }
 
-	public void setUsername(String uname) {
-		username = uname;
-	}
+  public void setUsername(String uname) {
+    username = uname;
+  }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+  public void setPassword(String password) {
+    this.password = password;
+  }
 }
