@@ -47,7 +47,7 @@ function start(argv) {
     serve.servePlatform('browser', {port: args.port}).then(function (serverInfo) {
         var projectUrl = url.resolve('http://localhost:' + serverInfo.port + '/', sourceFile ? sourceFile[1] : 'index.html');
         console.log('Static file server running @ ' + projectUrl + '\nCTRL + C to shut down');
-        return serve.launchBrowser({target: args.target, url: projectUrl});
+        //return serve;//.launchBrowser({target: args.target, url: projectUrl});
     }).done();
 }
 

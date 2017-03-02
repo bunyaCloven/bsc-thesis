@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="co.madran.beeride.Starter" x="1188" y="724">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="co.madran.beeride.security.SecurityRequestHandler"
+        x="852" y="110">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.UserRepository"
+            endpointName="userRepository" kind="Simple"/>
+        <Communication destinationClassName="co.madran.beeride.model.dao.UserRepository"/>
+    </Class>
+    <Class name="co.madran.beeride.model.dao.PathRepository" x="856" y="518">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="co.madran.beeride.security.SecurityConfig" x="1074" y="222">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="co.madran.beeride.controller.CarpoolHandler" x="651" y="323">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.PathRepository"
+            endpointName="pathRepository" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.CarpoolRepository"
+            endpointName="carpoolRepository" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.CarRepository"
+            endpointName="carRepository" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.UserRepository"
+            endpointName="userRepository" kind="Simple"/>
+        <Communication destinationClassName="co.madran.beeride.model.dao.UserRepository"/>
+        <Communication destinationClassName="co.madran.beeride.model.dao.CarpoolRepository"/>
+    </Class>
+    <Class name="co.madran.beeride.model.dao.LocationRepository"
+        x="1226" y="522">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="co.madran.beeride.controller.PathHandler" x="1074" y="358">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.LocationRepository"
+            endpointName="locationRepository" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.PathRepository"
+            endpointName="pathRepository" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.UserRepository"
+            endpointName="userRepository" kind="Simple"/>
+        <Communication destinationClassName="co.madran.beeride.model.dao.PathRepository"/>
+        <Communication destinationClassName="co.madran.beeride.model.dao.UserRepository"/>
+    </Class>
+    <Class name="co.madran.beeride.security.UserService" x="114" y="120">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.UserRepository"
+            endpointName="repo" kind="Simple"/>
+        <Communication destinationClassName="co.madran.beeride.model.dao.UserRepository"/>
+    </Class>
+    <Class name="co.madran.beeride.model.dao.SeatRepository" x="258" y="378">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="co.madran.beeride.controller.SeatHandler" x="334" y="292">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.SeatRepository"
+            endpointName="seatRepository" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.CarpoolRepository"
+            endpointName="carpoolRepository" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.CarRepository"
+            endpointName="carRepository" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.UserRepository"
+            endpointName="userRepository" kind="Simple"/>
+        <Communication destinationClassName="co.madran.beeride.model.dao.SeatRepository"/>
+        <Communication destinationClassName="co.madran.beeride.model.dao.UserRepository"/>
+    </Class>
+    <Class name="co.madran.beeride.model.dao.CarRepository" x="280" y="482">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="co.madran.beeride.model.dao.UserRepository" x="610" y="116">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="co.madran.beeride.model.dao.CarpoolRepository" x="590" y="468">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="co.madran.beeride.controller.CarHandler" x="35" y="328">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.CarRepository"
+            endpointName="carRepository" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.dao.UserRepository"
+            endpointName="userRepository" kind="Simple"/>
+        <Communication destinationClassName="co.madran.beeride.model.dao.CarRepository"/>
+        <Communication destinationClassName="co.madran.beeride.model.dao.UserRepository"/>
+    </Class>
+</ClassDiagram>

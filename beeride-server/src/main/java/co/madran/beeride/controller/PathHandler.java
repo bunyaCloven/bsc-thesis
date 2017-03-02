@@ -7,26 +7,23 @@ import co.madran.beeride.model.domain.Location;
 import co.madran.beeride.model.domain.Path;
 import co.madran.beeride.model.domain.User;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/paths")
 @CrossOrigin(methods = { RequestMethod.GET, RequestMethod.POST })
 public class PathHandler {
-  private Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
   @Autowired
   private UserRepository userRepository;
   @Autowired
@@ -34,23 +31,18 @@ public class PathHandler {
   @Autowired
   private LocationRepository locationRepository;
 
-  @ResponseBody
   @RequestMapping(method = RequestMethod.GET)
-  public String getPathsOfUser(@RequestParam String username) {
-    JsonObject response = new JsonObject();
-    response.addProperty("success", true);
-    User user = userRepository.findByUsername(username);
-    List<Path> path = pathRepository.findByUser(user);
-    response.add("data", gson.toJsonTree(path));
-    return response.toString();
+  public ResponseEntity<Collection<Path>> getPathsOfUser(
+      @RequestParam String username) {
+    final User user = userRepository.findByUsername(username);
+    final List<Path> path = pathRepository.findByUser(user);
+    return new ResponseEntity<>(path, HttpStatus.OK);
   }
 
-  @ResponseBody
   @RequestMapping(path = "add", method = RequestMethod.POST)
-  public String addPathToUser(@RequestParam Long id, @RequestParam String username,
-      @RequestParam String name, @RequestParam String start, @RequestParam String xend) {
-    JsonObject response = new JsonObject();
-    response.addProperty("success", true);
+  public ResponseEntity<Void> addPathToUser(@RequestParam Long id,
+      @RequestParam String username, @RequestParam String name,
+      @RequestParam String start, @RequestParam String xend) {
     Path path = new Path();
     if (id == null) {
       User user = userRepository.findByUsername(username);
@@ -64,20 +56,17 @@ public class PathHandler {
     path.setStartLocation(locationRepository.save(Location.decode(start)));
     path.setEndLocation(locationRepository.save(Location.decode(xend)));
     pathRepository.save(path);
-    return response.toString();
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @RequestMapping(path = "delete", method = RequestMethod.POST)
-  public void deletePath(@RequestParam Long id) {
+  public ResponseEntity<Void> deletePath(@RequestParam Long id) {
     pathRepository.delete(id);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
-  @ResponseBody
   @RequestMapping(path = "{id}")
-  public String getPath(@PathVariable Long id) {
-    JsonObject response = new JsonObject();
-    response.addProperty("success", true);
-    response.add("data", gson.toJsonTree(pathRepository.findOne(id)));
-    return response.toString();
+  public ResponseEntity<Path> getPath(@PathVariable Long id) {
+    return new ResponseEntity<>(pathRepository.findOne(id), HttpStatus.OK);
   }
 }

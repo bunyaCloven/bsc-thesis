@@ -3,8 +3,6 @@ package co.madran.beeride.security;
 import co.madran.beeride.model.dao.UserRepository;
 import co.madran.beeride.model.domain.User;
 
-import com.google.gson.JsonObject;
-
 import java.io.IOException;
 import java.io.Writer;
 
@@ -12,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +26,8 @@ public class SecurityRequestHandler {
 
   @ResponseBody
   @RequestMapping(value = "/cologin")
-  public String getRoot(Model model) {
-    return "{\"success\": true}";
+  public ResponseEntity<Void> getRoot(Model model) {
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   /** Sends requesting ajax requests to main page with timeout flag. */
@@ -52,21 +52,22 @@ public class SecurityRequestHandler {
 
   @ResponseBody
   @RequestMapping(value = "/signup")
-  public String signup(@RequestParam String username, @RequestParam String email,
-      @RequestParam String password, @RequestParam String password2) {
-    JsonObject response = new JsonObject();
+  public ResponseEntity<Void> signup(@RequestParam String username,
+      @RequestParam String email, @RequestParam String password,
+      @RequestParam String password2) {
+    HttpStatus status;
     String uname = username.split(",")[1];
     if (password.equals(password2) && email.contains("@")
         && userRepository.findByUsername(uname) == null) {
-      response.addProperty("success", true);
+      status = HttpStatus.OK;
       User user = new User();
       user.setUsername(uname);
       user.setEmail(email);
       user.setPassword(password);
       userRepository.save(user);
     } else {
-      response.addProperty("success", false);
+      status = HttpStatus.CONFLICT;
     }
-    return response.toString();
+    return new ResponseEntity<>(status);
   }
 }

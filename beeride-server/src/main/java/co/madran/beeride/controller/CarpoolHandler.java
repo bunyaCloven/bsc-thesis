@@ -1,5 +1,6 @@
 package co.madran.beeride.controller;
 
+import co.madran.beeride.model.CarpoolUI;
 import co.madran.beeride.model.dao.CarRepository;
 import co.madran.beeride.model.dao.CarpoolRepository;
 import co.madran.beeride.model.dao.PathRepository;
@@ -8,26 +9,23 @@ import co.madran.beeride.model.domain.Carpool;
 import co.madran.beeride.model.domain.Location;
 import co.madran.beeride.model.domain.User;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/carpools")
 public class CarpoolHandler {
-  private Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
   @Autowired
   private CarpoolRepository carpoolRepository;
   @Autowired
@@ -37,25 +35,11 @@ public class CarpoolHandler {
   @Autowired
   private CarRepository carRepository;
 
-  @ResponseBody
-  @RequestMapping(method = RequestMethod.GET)
-  public String getCarsOfUser(@RequestParam String username) {
-    JsonObject response = new JsonObject();
-    response.addProperty("success", true);
-    User user = userRepository.findByUsername(username);
-    List<Carpool> carpool = carpoolRepository.findByUser(user);
-    response.add("data", gson.toJsonTree(carpool));
-    return response.toString();
-  }
-
-  @ResponseBody
   @RequestMapping(path = "add", method = RequestMethod.POST)
-  public String addCarpoolToUser(@RequestParam Long id, @RequestParam String username,
-      @RequestParam String name, @RequestParam Date time, @RequestParam Long path,
+  public ResponseEntity<Void> addCarpoolToUser(@RequestParam Long id,
+      @RequestParam String username, @RequestParam String name,
+      @RequestParam Date time, @RequestParam Long path,
       @RequestParam Long car) {
-    JsonObject response = new JsonObject();
-    response.addProperty("success", true);
-
     Carpool carpool = new Carpool();
     if (id == null) {
       User user = userRepository.findByUsername(username);
@@ -73,73 +57,49 @@ public class CarpoolHandler {
       carpool.setCurrentPassengers(0);
     }
     carpoolRepository.save(carpool);
-    return response.toString();
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
-  @ResponseBody
   @RequestMapping(path = "delete", method = RequestMethod.POST)
-  public String deleteCarpool(@RequestParam Long id) {
-    JsonObject response = new JsonObject();
-    response.addProperty("success", true);
+  public ResponseEntity<Void> deleteCarpool(@RequestParam Long id) {
     carpoolRepository.delete(id);
-    return response.toString();
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
-  @ResponseBody
   @RequestMapping(path = "all")
-  public String allCarpools(@RequestParam Integer page, @RequestParam Integer limit,
-      @RequestParam(required = false) String name, @RequestParam(required = false) String start) {
-    JsonObject response = new JsonObject();
-    response.addProperty("success", true);
-    // Page<Carpool> carpoolPage = carpoolRepository.findNonFull(new
-    // PageRequest(
-    // page - 1, limit));
+  public ResponseEntity<Collection<Carpool>> allCarpools(
+      @RequestParam Integer page, @RequestParam Integer limit,
+      @RequestParam(required = false) String name,
+      @RequestParam(required = false) String start) {
     List<Carpool> carpools;
+    PageRequest currentPage = new PageRequest(page - 1, limit);
     if (name != null) {
       if (start != null && start != "") {
         Location location = Location.decode(start);
-        carpools = carpoolRepository.findNonFullFiltered(name, location.getLatitude(),
-            location.getLongitude(), new PageRequest(page - 1, limit));
+        carpools = carpoolRepository.findNonFullFiltered(name,
+            location.getLatitude(), location.getLongitude(), currentPage);
       } else {
-        carpools = carpoolRepository.findNonFullByName(name, new PageRequest(page - 1, limit));
+        carpools = carpoolRepository.findNonFullByName(name, currentPage);
       }
     } else {
-      carpools = carpoolRepository.findNonFull(new PageRequest(page - 1, limit));
+      carpools = carpoolRepository
+          .findNonFull(new PageRequest(page - 1, limit));
     }
-    // for (Carpool car : carpoolPage) {
-    // carpools.add(car);
-    // }
-    response.add("data", gson.toJsonTree(carpools));
-    return response.toString();
+    return new ResponseEntity<>(carpools, HttpStatus.OK);
   }
 
-  @ResponseBody
   @RequestMapping(path = "{id}")
-  public String getCar(@PathVariable Long id) {
-    JsonObject response = new JsonObject();
-    response.addProperty("success", true);
+  public ResponseEntity<CarpoolUI> getCarpool(@PathVariable Long id) {
     Carpool carpool = carpoolRepository.findOne(id);
-    JsonObject cp = (JsonObject) gson.toJsonTree(carpool);
-    cp.addProperty("seats",
-        carpool.getCurrentPassengers() + "/" + carpool.getCar().getPassengerCount());
-    cp.addProperty("plate", carpool.getCar().getPlate());
-    cp.addProperty("brand", carpool.getCar().getBrand());
-    cp.addProperty("start", carpool.getPath().getStart());
-    cp.addProperty("end", carpool.getPath().getEnd());
-    response.add("data", cp);
-    return response.toString();
+    return new ResponseEntity<>(new CarpoolUI(carpool), HttpStatus.OK);
   }
 
-  @ResponseBody
   @RequestMapping(path = "driverView/{id}")
-  public String getCarOfDriver(@PathVariable Long id) {
-    JsonObject response = new JsonObject();
-    response.addProperty("success", true);
+  public ResponseEntity<Carpool> getCarpoolOfDriver(@PathVariable Long id) {
     Carpool carpool = carpoolRepository.findOne(id);
-    JsonObject cp = (JsonObject) gson.toJsonTree(carpool);
-    cp.addProperty("seats",
-        carpool.getCurrentPassengers() + "/" + carpool.getCar().getPassengerCount());
-    response.add("data", cp);
-    return response.toString();
+    // FIXME: add seats
+    // cp.addProperty("seats", carpool.getCurrentPassengers() + "/"
+    // + carpool.getCar().getPassengerCount());
+    return new ResponseEntity<>(carpool, HttpStatus.OK);
   }
 }

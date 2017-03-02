@@ -1,7 +1,5 @@
 package co.madran.beeride.model.domain;
 
-import com.google.gson.annotations.Expose;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,12 +7,12 @@ import javax.persistence.Id;
 @Entity
 public class Path {
 
-  private @Id @Expose @GeneratedValue Long id;
-  private @Expose String name;
+  private @Id @GeneratedValue Long id;
+  private String name;
   private User user;
 
-  private @Expose String start;
-  private @Expose String xend;
+  private String start;
+  private String xend;
 
   private Location startLocation;
   private Location endLocation;
