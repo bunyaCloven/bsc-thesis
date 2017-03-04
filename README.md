@@ -1,0 +1,1 @@
+![build status](https://travis-ci.org/ifmad/bsc-thesis.svg?branch=master)
