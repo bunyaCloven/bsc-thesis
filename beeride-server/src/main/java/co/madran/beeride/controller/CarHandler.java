@@ -37,24 +37,13 @@ public class CarHandler {
   }
 
   @RequestMapping(path = "add", method = RequestMethod.POST)
-  public ResponseEntity<Void> addCarToUser(@RequestParam Long id,
-      @RequestParam String username, @RequestParam String name,
-      @RequestParam String brand, @RequestParam Integer passengerCount,
-      @RequestParam String plate) {
-
-    Car car = new Car();
-    if (id == null) {
-      final User user = userRepository.findByUsername(username);
-      car.setUser(user);
-    } else {
-      car = carRepository.findOne(id);
-    }
-    car.setName(name);
-    car.setBrand(brand);
-    car.setPlate(plate);
-    car.setPassengerCount(passengerCount);
-    carRepository.save(car);
-    return new ResponseEntity<>(HttpStatus.OK);
+  public ResponseEntity<Void> addCarToUser(Car car,
+      @RequestParam String username) {
+    final User user = userRepository.findByUsername(username);
+    car.setUser(user);
+    Car saved = carRepository.save(car);
+    Boolean isSaved = saved.getId() != null;
+    return new ResponseEntity<>(isSaved ? HttpStatus.OK : HttpStatus.CONFLICT);
   }
 
   @RequestMapping(path = "delete", method = RequestMethod.POST)
