@@ -10,7 +10,6 @@ import co.madran.beeride.model.domain.Location;
 import co.madran.beeride.model.domain.User;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,26 +35,19 @@ public class CarpoolHandler {
   private CarRepository carRepository;
 
   @RequestMapping(path = "add", method = RequestMethod.POST)
-  public ResponseEntity<Void> addCarpoolToUser(@RequestParam Long id,
-      @RequestParam String username, @RequestParam String name,
-      @RequestParam Date time, @RequestParam Long path,
-      @RequestParam Long car) {
-    Carpool carpool = new Carpool();
-    if (id == null) {
-      User user = userRepository.findByUsername(username);
-      carpool.setUser(user);
-    } else {
-      carpool = carpoolRepository.findOne(id);
-    }
-    if (path != null) {
-      carpool.setPath(pathRepository.findOne(path));
-      carpool.setCar(carRepository.findOne(car));
-    }
-    carpool.setName(name);
-    carpool.setTime(time);
-    if (carpool.getCurrentPassengers() == null) {
-      carpool.setCurrentPassengers(0);
-    }
+  public ResponseEntity<Void> addCarpoolToUser(@RequestParam String username,
+      Carpool carpool) {
+    User user = userRepository.findByUsername(username);
+    carpool.setUser(user);
+    // if (path != null) {
+    // carpool.setPath(pathRepository.findOne(path));
+    // carpool.setCar(carRepository.findOne(car));
+    // }
+    // carpool.setName(name);
+    // carpool.setTime(time);
+    // if (carpool.getCurrentPassengers() == null) {
+    // carpool.setCurrentPassengers(0);
+    // }
     carpoolRepository.save(carpool);
     return new ResponseEntity<>(HttpStatus.OK);
   }

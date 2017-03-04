@@ -3,7 +3,6 @@ package co.madran.beeride.controller;
 import co.madran.beeride.model.dao.LocationRepository;
 import co.madran.beeride.model.dao.PathRepository;
 import co.madran.beeride.model.dao.UserRepository;
-import co.madran.beeride.model.domain.Location;
 import co.madran.beeride.model.domain.Path;
 import co.madran.beeride.model.domain.User;
 
@@ -40,29 +39,24 @@ public class PathHandler {
   }
 
   @RequestMapping(path = "add", method = RequestMethod.POST)
-  public ResponseEntity<Void> addPathToUser(@RequestParam Long id,
-      @RequestParam String username, @RequestParam String name,
-      @RequestParam String start, @RequestParam String xend) {
-    Path path = new Path();
-    if (id == null) {
-      User user = userRepository.findByUsername(username);
-      path.setUser(user);
-    } else {
-      path = pathRepository.findOne(id);
-    }
-    path.setName(name);
-    path.setStart(start);
-    path.setEnd(xend);
-    path.setStartLocation(locationRepository.save(Location.decode(start)));
-    path.setEndLocation(locationRepository.save(Location.decode(xend)));
+  public ResponseEntity<Void> addPathToUser(@RequestParam String username,
+      Path path) {
+    User user = userRepository.findByUsername(username);
+    path.setUser(user);
+    /** FIXME: all this decoding is going to get messy to convert */
+    // path.setStartLocation(locationRepository.save(Location.decode(start)));
+    // path.setEndLocation(locationRepository.save(Location.decode(xend)));
     pathRepository.save(path);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @RequestMapping(path = "delete", method = RequestMethod.POST)
   public ResponseEntity<Void> deletePath(@RequestParam Long id) {
+    final boolean existed = pathRepository.exists(id);
     pathRepository.delete(id);
-    return new ResponseEntity<>(HttpStatus.OK);
+    final boolean exists = pathRepository.exists(id);
+    return new ResponseEntity<>(
+        existed && !exists ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
   }
 
   @RequestMapping(path = "{id}")
