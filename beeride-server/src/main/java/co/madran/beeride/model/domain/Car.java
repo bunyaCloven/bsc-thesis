@@ -1,7 +1,5 @@
 package co.madran.beeride.model.domain;
 
-import com.google.gson.annotations.Expose;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,15 +7,23 @@ import javax.persistence.Id;
 
 @Entity
 public class Car {
-  private @Id @Expose @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
-  private @Expose String name;
+  private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+  private String name;
   private User user;
-  private @Expose Integer passengerCount;
-  private @Expose String brand;
-  private @Expose String plate;
+  private Integer passengerCount;
+  private String brand;
+  private String plate;
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public User getUser() {
+    return user;
   }
 
   public void setUser(User user) {

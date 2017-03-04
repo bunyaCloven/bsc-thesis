@@ -1,7 +1,5 @@
 package co.madran.beeride.model.domain;
 
-import com.google.gson.annotations.Expose;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,18 +12,19 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Carpool {
-  private @Id @Expose @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
-  private static SimpleDateFormat sdf = new SimpleDateFormat("MM dd hh:mm:ss yyyy");
+  private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+  private static SimpleDateFormat sdf = new SimpleDateFormat(
+      "MM dd hh:mm:ss yyyy");
   private User user;
   @Temporal(TemporalType.TIMESTAMP)
-  private @Expose Date timex;
-  private @Expose String time;
-  private @Expose String name;
+  private Date timex;
+  private String time;
+  private String name;
   private Path pathx;
-  private @Expose Long path;
+  private Long path;
   private Car carx;
-  private @Expose Long car;
-  private @Expose Integer currentPassengers;
+  private Long car;
+  private Integer currentPassengers;
 
   public void setName(String name) {
     this.name = name;

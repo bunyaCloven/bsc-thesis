@@ -1,7 +1,5 @@
 package co.madran.beeride.model.domain;
 
-import com.google.gson.annotations.Expose;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,8 +7,8 @@ import javax.persistence.Id;
 @Entity
 public class Location {
   private @Id @GeneratedValue Long id;
-  private @Expose Double latitude;
-  private @Expose Double longitude;
+  private Double latitude;
+  private Double longitude;
 
   public Location() {
   }

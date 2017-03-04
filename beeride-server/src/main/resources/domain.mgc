@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="co.madran.beeride.model.domain.Carpool" x="492" y="18">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.domain.Car"
+            endpointName="carx" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.domain.Path"
+            endpointName="pathx" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.domain.User"
+            endpointName="user" kind="Simple"/>
+        <Communication destinationClassName="co.madran.beeride.model.domain.Path"/>
+        <Communication destinationClassName="co.madran.beeride.model.domain.Car"/>
+    </Class>
+    <Class name="co.madran.beeride.model.domain.Location" x="664" y="380">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="co.madran.beeride.model.domain.User" x="21" y="150">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="co.madran.beeride.model.domain.Path" x="314" y="287">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.domain.Location"
+            endpointName="startLocation" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.domain.User"
+            endpointName="user" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.domain.Location"
+            endpointName="endLocation" kind="Simple"/>
+    </Class>
+    <Class name="co.madran.beeride.model.domain.Car" x="127" y="15">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.domain.User"
+            endpointName="user" kind="Simple"/>
+    </Class>
+    <Class name="co.madran.beeride.model.domain.Seat" x="300" y="198">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.domain.Carpool"
+            endpointName="carpool" kind="Simple"/>
+        <Association
+            destinationClassName="co.madran.beeride.model.domain.User"
+            endpointName="user" kind="Simple"/>
+    </Class>
+</ClassDiagram>

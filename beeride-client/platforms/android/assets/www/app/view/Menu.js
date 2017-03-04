@@ -3,15 +3,19 @@ Ext.define('Beeride.view.Menu', {
 	xtype : 'menu',
 	requires : [],
 	config : {
+		layout : 'vbox',
 		scrollable : null,
 		items : [ {
 			xtype : 'button',
 			text : 'For Drivers',
+			flex : 1,
 			handler : function() {
 				var main = Ext.ComponentQuery.query('main')[0];
 				main.push({
 					xtype : 'panel',
+					layout : 'vbox',
 					items : [ {
+						flex : 1,
 						xtype : 'button',
 						itemId : 'path',
 						text : 'Path module',
@@ -19,6 +23,7 @@ Ext.define('Beeride.view.Menu', {
 						deleteUrl : '/paths/delete',
 						editUrl : '/paths'
 					}, {
+						flex : 1,
 						xtype : 'button',
 						itemId : 'car',
 						text : 'My Car Profiles',
@@ -26,6 +31,7 @@ Ext.define('Beeride.view.Menu', {
 						deleteUrl : '/cars/delete',
 						editUrl : '/cars'
 					}, {
+						flex : 1,
 						xtype : 'button',
 						itemId : 'carpool',
 						text : 'My Carpools',
@@ -40,11 +46,14 @@ Ext.define('Beeride.view.Menu', {
 		}, {
 			xtype : 'button',
 			text : 'For Passengers',
+			flex : 1,
 			handler : function() {
 				var main = Ext.ComponentQuery.query('main')[0];
 				main.push({
 					xtype : 'panel',
+					layout : 'vbox',
 					items : [ {
+						flex : 1,
 						xtype : 'button',
 						itemId : 'cars',
 						text : 'Car Profiles',
@@ -54,6 +63,7 @@ Ext.define('Beeride.view.Menu', {
 						paging : true,
 						dni : true
 					}, {
+						flex : 1,
 						xtype : 'button',
 						itemId : 'carpools',
 						text : 'All Carpools',
@@ -65,6 +75,7 @@ Ext.define('Beeride.view.Menu', {
 						paging : true,
 						dni : true
 					}, {
+						flex : 1,
 						xtype : 'button',
 						itemId : 'seats',
 						text : 'My Carpools',

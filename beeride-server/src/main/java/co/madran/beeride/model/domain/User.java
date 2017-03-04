@@ -1,5 +1,7 @@
 package co.madran.beeride.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -48,6 +50,7 @@ public class User implements UserDetails {
   }
 
   @Override
+  @JsonIgnore
   public String getPassword() {
     return password;
   }
