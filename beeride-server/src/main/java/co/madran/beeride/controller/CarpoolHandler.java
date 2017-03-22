@@ -34,6 +34,14 @@ public class CarpoolHandler {
   @Autowired
   private CarRepository carRepository;
 
+  @RequestMapping(method = RequestMethod.GET)
+  public ResponseEntity<Collection<Carpool>> getCarpoolsOfUser(
+      @RequestParam String username) {
+    final User user = userRepository.findByUsername(username);
+    final List<Carpool> carpools = carpoolRepository.findByUser(user);
+    return new ResponseEntity<>(carpools, HttpStatus.OK);
+  }
+
   @RequestMapping(path = "add", method = RequestMethod.POST)
   public ResponseEntity<Void> addCarpoolToUser(@RequestParam String username,
       Carpool carpool) {
