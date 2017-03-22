@@ -13,11 +13,12 @@ Ext.define('Beeride.controller.Carpool', {
       username : Beeride.util.Auth.getUsername()
     });
     form.submit({
-      success : function() {
-        form.up().remove(form);
-      },
-      failure : function(that, result) {
-        Ext.Msg.alert("", result.message);
+      failure : function(form, result) {
+        if (result.status / 100 === 2) {
+          form.up().remove(form);
+        } else {
+          Ext.Msg.alert("", result.message);
+        }
       }
     });
   }
