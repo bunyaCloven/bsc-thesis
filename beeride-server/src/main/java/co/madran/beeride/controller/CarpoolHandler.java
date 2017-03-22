@@ -67,9 +67,8 @@ public class CarpoolHandler {
   }
 
   @RequestMapping(path = "all")
-  public ResponseEntity<Collection<Carpool>> allCarpools(
-      @RequestParam Integer page, @RequestParam Integer limit,
-      @RequestParam(required = false) String name,
+  public ResponseEntity<List<Carpool>> allCarpools(@RequestParam Integer page,
+      @RequestParam Integer limit, @RequestParam(required = false) String name,
       @RequestParam(required = false) String start) {
     List<Carpool> carpools;
     PageRequest currentPage = new PageRequest(page - 1, limit);
@@ -82,8 +81,7 @@ public class CarpoolHandler {
         carpools = carpoolRepository.findNonFullByName(name, currentPage);
       }
     } else {
-      carpools = carpoolRepository
-          .findNonFull(new PageRequest(page - 1, limit));
+      carpools = carpoolRepository.findNonFull(currentPage);
     }
     return new ResponseEntity<>(carpools, HttpStatus.OK);
   }

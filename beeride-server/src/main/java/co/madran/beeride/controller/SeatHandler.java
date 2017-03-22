@@ -10,7 +10,7 @@ import co.madran.beeride.model.domain.Seat;
 import co.madran.beeride.model.domain.SeatUI;
 import co.madran.beeride.model.domain.User;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -62,7 +62,7 @@ public class SeatHandler {
   }
 
   @RequestMapping(method = RequestMethod.GET)
-  public ResponseEntity<Collection<Carpool>> getCarpools(
+  public ResponseEntity<List<Carpool>> getCarpools(
       @RequestParam String username, @RequestParam Integer page,
       @RequestParam Integer limit) {
     User user = userRepository.findByUsername(username);
