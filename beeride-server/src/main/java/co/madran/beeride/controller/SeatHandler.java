@@ -1,5 +1,6 @@
 package co.madran.beeride.controller;
 
+import co.madran.beeride.http.ResponseEntityFactory;
 import co.madran.beeride.model.dao.CarRepository;
 import co.madran.beeride.model.dao.CarpoolRepository;
 import co.madran.beeride.model.dao.SeatRepository;
@@ -72,26 +73,12 @@ public class SeatHandler {
   }
 
   @RequestMapping(path = "{id}")
-  public ResponseEntity<SeatUI> getSeatCarpool(@PathVariable Long id,
+  public ResponseEntity<?> getSeatCarpool(@PathVariable Long id,
       @RequestParam String username) {
-    // final JsonObject response = new JsonObject();
     Carpool carpool = carpoolRepository.findOne(id);
     User user = userRepository.findByUsername(username);
     Seat seat = seatRepository.findByUserAndCarpool(user, carpool);
-    // JsonObject seatObject = new JsonObject();
-    // seatObject.addProperty("id", seat.getCarpool().getId());
-    // seatObject.addProperty("name", seat.getCarpool().getName());
-    // seatObject.addProperty("time", seat.getCarpool().getTime().toString());
-    // seatObject.addProperty("seats", carpool.getCurrentPassengers() + "/"
-    // + carpool.getCar().getPassengerCount());
-    // seatObject.addProperty("plate", seat.getCarpool().getCar().getPlate());
-    // seatObject.addProperty("brand", seat.getCarpool().getCar().getBrand());
-    // seatObject.addProperty("start", seat.getCarpool().getPath().getStart());
-    // seatObject.addProperty("end", seat.getCarpool().getPath().getEnd());
-    // response.addProperty("success", true);
-    // response.add("data", seatObject);
-    // return response.toString();
-    return new ResponseEntity<>(new SeatUI(seat), HttpStatus.OK);
+    return new ResponseEntityFactory(HttpStatus.OK).with(new SeatUI(seat));
   }
 
   @RequestMapping(path = "remove")
