@@ -24,7 +24,7 @@ public class Carpool {
   private Long path;
   private Car carx;
   private Long car;
-  private Integer currentPassengers;
+  private Integer currentPassengers = 0;
 
   public void setName(String name) {
     this.name = name;
