@@ -1,6 +1,9 @@
 package co.madran.beeride.model.domain;
 
-public class SeatUI {
+import co.madran.beeride.http.PrintMedium;
+import co.madran.beeride.model.Printable;
+
+public class SeatUI implements Printable {
   private Long id;
   private String name;
   private String time;
@@ -21,5 +24,17 @@ public class SeatUI {
     brand = carpool.getCar().getBrand();
     start = carpool.getPath().getStart();
     end = carpool.getPath().getEnd();
+  }
+
+  @Override
+  public void print(PrintMedium medium) {
+    medium.addProperty("id", id);
+    medium.addProperty("name", name);
+    medium.addProperty("time", time);
+    medium.addProperty("seats", seats);
+    medium.addProperty("plate", plate);
+    medium.addProperty("brand", brand);
+    medium.addProperty("start", start);
+    medium.addProperty("end", end);
   }
 }

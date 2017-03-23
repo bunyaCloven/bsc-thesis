@@ -14,19 +14,25 @@ import org.springframework.data.repository.query.Param;
 public interface CarpoolRepository extends JpaRepository<Carpool, Long> {
   List<Carpool> findByUser(User user);
 
-  @Query("select cp from Carpool cp " + "where cp.carx.passengerCount>cp.currentPassengers "
+  @Query("select cp from Carpool cp "
+      + "where cp.carx.passengerCount>cp.currentPassengers "
       + "and cp.timex>CURRENT_TIMESTAMP")
   List<Carpool> findNonFull(Pageable pageable);
 
-  @Query("select cp from Carpool cp " + "where cp.carx.passengerCount>cp.currentPassengers "
-      + "and cp.timex>CURRENT_TIMESTAMP " + "and cp.name like concat('%',:name,'%') ")
-  List<Carpool> findNonFullByName(@Param(value = "name") String name, Pageable pageRequest);
+  @Query("select cp from Carpool cp "
+      + "where cp.carx.passengerCount>cp.currentPassengers "
+      + "and cp.timex>CURRENT_TIMESTAMP "
+      + "and cp.name like concat('%',:name,'%') ")
+  List<Carpool> findNonFullByName(@Param(value = "name") String name,
+      Pageable pageRequest);
 
-  @Query("select cp from Carpool cp " + "where cp.carx.passengerCount>cp.currentPassengers "
-      + "and cp.timex>CURRENT_TIMESTAMP " + "and cp.name like concat('%',:name,'%') "
+  @Query("select cp from Carpool cp "
+      + "where cp.carx.passengerCount>cp.currentPassengers "
+      + "and cp.timex>CURRENT_TIMESTAMP "
+      + "and cp.name like concat('%',:name,'%') "
       + "order by abs(cp.pathx.startLocation.latitude-:latitude)"
       + "+abs(cp.pathx.startLocation.longitude-:longitude)")
   List<Carpool> findNonFullFiltered(@Param(value = "name") String name,
-      @Param(value = "latitude") Double latitude, @Param(value = "longitude") Double longitude,
-      Pageable pageRequest);
+      @Param(value = "latitude") Double latitude,
+      @Param(value = "longitude") Double longitude, Pageable pageRequest);
 }

@@ -6,7 +6,6 @@ import co.madran.beeride.model.dao.UserRepository;
 import co.madran.beeride.model.domain.Path;
 import co.madran.beeride.model.domain.User;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class PathHandler {
   private LocationRepository locationRepository;
 
   @RequestMapping(method = RequestMethod.GET)
-  public ResponseEntity<Collection<Path>> getPathsOfUser(
+  public ResponseEntity<List<Path>> getPathsOfUser(
       @RequestParam String username) {
     final User user = userRepository.findByUsername(username);
     final List<Path> path = pathRepository.findByUser(user);

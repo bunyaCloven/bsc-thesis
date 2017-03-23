@@ -8,7 +8,6 @@ import co.madran.beeride.model.domain.User;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,10 +52,11 @@ public class CarHandler {
   }
 
   @RequestMapping(path = "all")
-  public ResponseEntity<Page<Car>> allCars(@RequestParam Integer page,
+  public ResponseEntity<List<Car>> allCars(@RequestParam Integer page,
       @RequestParam Integer limit) {
     return new ResponseEntity<>(
-        carRepository.findAll(new PageRequest(page - 1, limit)), HttpStatus.OK);
+        carRepository.findAll(new PageRequest(page - 1, limit)).getContent(),
+        HttpStatus.OK);
   }
 
   @RequestMapping(path = "{id}")

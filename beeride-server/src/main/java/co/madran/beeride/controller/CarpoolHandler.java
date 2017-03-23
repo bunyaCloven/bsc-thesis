@@ -1,5 +1,6 @@
 package co.madran.beeride.controller;
 
+import co.madran.beeride.http.ResponseEntityFactory;
 import co.madran.beeride.model.CarpoolUI;
 import co.madran.beeride.model.dao.CarRepository;
 import co.madran.beeride.model.dao.CarpoolRepository;
@@ -47,15 +48,6 @@ public class CarpoolHandler {
       Carpool carpool) {
     User user = userRepository.findByUsername(username);
     carpool.setUser(user);
-    // if (path != null) {
-    // carpool.setPath(pathRepository.findOne(path));
-    // carpool.setCar(carRepository.findOne(car));
-    // }
-    // carpool.setName(name);
-    // carpool.setTime(time);
-    // if (carpool.getCurrentPassengers() == null) {
-    // carpool.setCurrentPassengers(0);
-    // }
     carpoolRepository.save(carpool);
     return new ResponseEntity<>(HttpStatus.OK);
   }
@@ -67,9 +59,8 @@ public class CarpoolHandler {
   }
 
   @RequestMapping(path = "all")
-  public ResponseEntity<Collection<Carpool>> allCarpools(
-      @RequestParam Integer page, @RequestParam Integer limit,
-      @RequestParam(required = false) String name,
+  public ResponseEntity<List<Carpool>> allCarpools(@RequestParam Integer page,
+      @RequestParam Integer limit, @RequestParam(required = false) String name,
       @RequestParam(required = false) String start) {
     List<Carpool> carpools;
     PageRequest currentPage = new PageRequest(page - 1, limit);
@@ -82,16 +73,17 @@ public class CarpoolHandler {
         carpools = carpoolRepository.findNonFullByName(name, currentPage);
       }
     } else {
-      carpools = carpoolRepository
-          .findNonFull(new PageRequest(page - 1, limit));
+      carpools = carpoolRepository.findNonFull(currentPage);
     }
     return new ResponseEntity<>(carpools, HttpStatus.OK);
   }
 
   @RequestMapping(path = "{id}")
-  public ResponseEntity<CarpoolUI> getCarpool(@PathVariable Long id) {
+  public ResponseEntity<?> getCarpool(@PathVariable Long id) {
     Carpool carpool = carpoolRepository.findOne(id);
-    return new ResponseEntity<>(new CarpoolUI(carpool), HttpStatus.OK);
+    return new ResponseEntityFactory(HttpStatus.OK)
+        .with(new CarpoolUI(carpool));
+    // return new ResponseEntity<>(new CarpoolUI(carpool), HttpStatus.OK);
   }
 
   @RequestMapping(path = "driverView/{id}")
