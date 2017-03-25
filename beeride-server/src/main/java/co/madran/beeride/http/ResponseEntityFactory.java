@@ -2,32 +2,30 @@ package co.madran.beeride.http;
 
 import co.madran.beeride.model.Printable;
 
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public class ResponseEntityFactory implements PrintMedium {
+public class ResponseEntityFactory {
   private transient HttpStatus status;
-  private transient HashMap<String, Object> map;
 
   public ResponseEntityFactory(final HttpStatus status) {
     this.status = status;
-    this.map = new HashMap<String, Object>();
   }
 
   public ResponseEntity<Void> emptyBody() {
     return new ResponseEntity<>(status);
   }
 
-  public ResponseEntity<HashMap<String, Object>> with(Printable data) {
-    data.print(this);
-    return new ResponseEntity<>(map, status);
+  public ResponseEntity<Map<String, Object>> with(Printable data) {
+    return new ResponseEntity<>(new DataMap().with(data), status);
   }
 
-  @Override
-  public void addProperty(String key, Object value) {
-    map.put(key, value);
+  public ResponseEntity<List<Map<String, Object>>> withAll(
+      List<? extends Printable> data) {
+    return new ResponseEntity<>(new DataMapArray().with(data), status);
   }
 
 }
