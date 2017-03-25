@@ -1,5 +1,6 @@
 package co.madran.beeride.controller;
 
+import co.madran.beeride.http.ResponseEntityFactory;
 import co.madran.beeride.model.dao.LocationRepository;
 import co.madran.beeride.model.dao.PathRepository;
 import co.madran.beeride.model.dao.UserRepository;
@@ -30,11 +31,10 @@ public class PathHandler {
   private LocationRepository locationRepository;
 
   @RequestMapping(method = RequestMethod.GET)
-  public ResponseEntity<List<Path>> getPathsOfUser(
-      @RequestParam String username) {
+  public ResponseEntity<?> getPathsOfUser(@RequestParam String username) {
     final User user = userRepository.findByUsername(username);
     final List<Path> path = pathRepository.findByUser(user);
-    return new ResponseEntity<>(path, HttpStatus.OK);
+    return new ResponseEntityFactory(HttpStatus.OK).withAll(path);
   }
 
   @RequestMapping(path = "add", method = RequestMethod.POST)
