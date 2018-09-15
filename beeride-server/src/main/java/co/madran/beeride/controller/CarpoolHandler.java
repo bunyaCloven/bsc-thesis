@@ -52,11 +52,11 @@ public class CarpoolHandler {
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
-  @RequestMapping(path = "delete", method = RequestMethod.POST)
-  public ResponseEntity<Void> deleteCarpool(@RequestParam Long id) {
-    carpoolRepository.delete(id);
-    return new ResponseEntity<>(HttpStatus.OK);
-  }
+  // @RequestMapping(path = "delete", method = RequestMethod.POST)
+  // public ResponseEntity<Void> deleteCarpool(@RequestParam Long id) {
+  //   carpoolRepository.delete(id);
+  //   return new ResponseEntity<>(HttpStatus.OK);
+  // }
 
   @RequestMapping(path = "all")
   public ResponseEntity<List<Carpool>> allCarpools(@RequestParam Integer page,
@@ -78,20 +78,20 @@ public class CarpoolHandler {
     return new ResponseEntity<>(carpools, HttpStatus.OK);
   }
 
-  @RequestMapping(path = "{id}")
-  public ResponseEntity<?> getCarpool(@PathVariable Long id) {
-    Carpool carpool = carpoolRepository.findOne(id);
-    return new ResponseEntityFactory(HttpStatus.OK)
-        .with(new CarpoolUI(carpool));
-    // return new ResponseEntity<>(new CarpoolUI(carpool), HttpStatus.OK);
-  }
+  // @RequestMapping(path = "{id}")
+  // public ResponseEntity<?> getCarpool(@PathVariable Long id) {
+  //   Carpool carpool = carpoolRepository.findOne(id);
+  //   return new ResponseEntityFactory(HttpStatus.OK)
+  //       .with(new CarpoolUI(carpool));
+  //   // return new ResponseEntity<>(new CarpoolUI(carpool), HttpStatus.OK);
+  // }
 
-  @RequestMapping(path = "driverView/{id}")
-  public ResponseEntity<Carpool> getCarpoolOfDriver(@PathVariable Long id) {
-    Carpool carpool = carpoolRepository.findOne(id);
-    // FIXME: add seats
-    // cp.addProperty("seats", carpool.getCurrentPassengers() + "/"
-    // + carpool.getCar().getPassengerCount());
-    return new ResponseEntity<>(carpool, HttpStatus.OK);
-  }
+  // @RequestMapping(path = "driverView/{id}")
+  // public ResponseEntity<Carpool> getCarpoolOfDriver(@PathVariable Long id) {
+  //   Carpool carpool = carpoolRepository.findOne(id);
+  //   // FIXME: add seats
+  //   // cp.addProperty("seats", carpool.getCurrentPassengers() + "/"
+  //   // + carpool.getCar().getPassengerCount());
+  //   return new ResponseEntity<>(carpool, HttpStatus.OK);
+  // }
 }

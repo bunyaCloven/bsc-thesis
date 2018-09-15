@@ -35,32 +35,32 @@ public class SeatHandler {
   @Autowired
   private UserRepository userRepository;
 
-  @RequestMapping(path = "sign")
-  public ResponseEntity<Void> signToCarpool(@RequestParam Long id,
-      @RequestParam String username) {
-    final HttpStatus status;
-    User user = userRepository.findByUsername(username);
-    Carpool carpool = carpoolRepository.findOne(id);
-    Car car = carpool.getCar();
-    if (seatRepository.findByUserAndCarpool(user, carpool) != null) {
-      status = HttpStatus.CONFLICT;
-      // response.addProperty("message",
-      // "You have already signed to this carpool.");
-    } else if (carpool.getCurrentPassengers() < car.getPassengerCount()) {
-      Seat seat = new Seat();
-      seat.setUser(user);
-      seat.setCarpool(carpool);
-      seatRepository.save(seat);
-      // FIXME: HERESY
-      carpool.setCurrentPassengers(carpool.getCurrentPassengers() + 1);
-      carRepository.save(car);
-      status = HttpStatus.OK;
-    } else {
-      status = HttpStatus.UNPROCESSABLE_ENTITY;
-      // response.addProperty("message", "Carpool has enough passengers");
-    }
-    return new ResponseEntity<>(status);
-  }
+  // @RequestMapping(path = "sign")
+  // public ResponseEntity<Void> signToCarpool(@RequestParam Long id,
+  //     @RequestParam String username) {
+  //   final HttpStatus status;
+  //   User user = userRepository.findByUsername(username);
+  //   Carpool carpool = carpoolRepository.findOne(id);
+  //   Car car = carpool.getCar();
+  //   if (seatRepository.findByUserAndCarpool(user, carpool) != null) {
+  //     status = HttpStatus.CONFLICT;
+  //     // response.addProperty("message",
+  //     // "You have already signed to this carpool.");
+  //   } else if (carpool.getCurrentPassengers() < car.getPassengerCount()) {
+  //     Seat seat = new Seat();
+  //     seat.setUser(user);
+  //     seat.setCarpool(carpool);
+  //     seatRepository.save(seat);
+  //     // FIXME: HERESY
+  //     carpool.setCurrentPassengers(carpool.getCurrentPassengers() + 1);
+  //     carRepository.save(car);
+  //     status = HttpStatus.OK;
+  //   } else {
+  //     status = HttpStatus.UNPROCESSABLE_ENTITY;
+  //     // response.addProperty("message", "Carpool has enough passengers");
+  //   }
+  //   return new ResponseEntity<>(status);
+  // }
 
   @RequestMapping(method = RequestMethod.GET)
   public ResponseEntity<List<Carpool>> getCarpools(
@@ -72,23 +72,23 @@ public class SeatHandler {
         HttpStatus.OK);
   }
 
-  @RequestMapping(path = "{id}")
-  public ResponseEntity<?> getSeatCarpool(@PathVariable Long id,
-      @RequestParam String username) {
-    Carpool carpool = carpoolRepository.findOne(id);
-    User user = userRepository.findByUsername(username);
-    Seat seat = seatRepository.findByUserAndCarpool(user, carpool);
-    return new ResponseEntityFactory(HttpStatus.OK).with(new SeatUI(seat));
-  }
+  // @RequestMapping(path = "{id}")
+  // public ResponseEntity<?> getSeatCarpool(@PathVariable Long id,
+  //     @RequestParam String username) {
+  //   Carpool carpool = carpoolRepository.findOne(id);
+  //   User user = userRepository.findByUsername(username);
+  //   Seat seat = seatRepository.findByUserAndCarpool(user, carpool);
+  //   return new ResponseEntityFactory(HttpStatus.OK).with(new SeatUI(seat));
+  // }
 
-  @RequestMapping(path = "remove")
-  public ResponseEntity<Void> removeFromCarpool(@RequestParam String username,
-      @RequestParam Long id) {
-    User user = userRepository.findByUsername(username);
-    Carpool carpool = carpoolRepository.findOne(id);
-    carpool.setCurrentPassengers(carpool.getCurrentPassengers() - 1);
-    Seat seat = seatRepository.findByUserAndCarpool(user, carpool);
-    seatRepository.delete(seat);
-    return new ResponseEntity<>(HttpStatus.OK);
-  }
+  // @RequestMapping(path = "remove")
+  // public ResponseEntity<Void> removeFromCarpool(@RequestParam String username,
+  //     @RequestParam Long id) {
+  //   User user = userRepository.findByUsername(username);
+  //   Carpool carpool = carpoolRepository.findOne(id);
+  //   carpool.setCurrentPassengers(carpool.getCurrentPassengers() - 1);
+  //   Seat seat = seatRepository.findByUserAndCarpool(user, carpool);
+  //   seatRepository.delete(seat);
+  //   return new ResponseEntity<>(HttpStatus.OK);
+  // }
 }

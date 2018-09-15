@@ -45,11 +45,11 @@ public class CarHandler {
     return new ResponseEntity<>(isSaved ? HttpStatus.OK : HttpStatus.CONFLICT);
   }
 
-  @RequestMapping(path = "delete", method = RequestMethod.POST)
-  public ResponseEntity<Void> deleteCar(@RequestParam Long id) {
-    carRepository.delete(id);
-    return new ResponseEntity<>(HttpStatus.OK);
-  }
+  // @RequestMapping(path = "delete", method = RequestMethod.POST)
+  // public ResponseEntity<Void> deleteCar(@RequestParam Long id) {
+  //   carRepository.delete(id);
+  //   return new ResponseEntity<>(HttpStatus.OK);
+  // }
 
   @RequestMapping(path = "all")
   public ResponseEntity<List<Car>> allCars(@RequestParam Integer page,
@@ -59,8 +59,8 @@ public class CarHandler {
         HttpStatus.OK);
   }
 
-  @RequestMapping(path = "{id}")
-  public ResponseEntity<Car> getCar(@PathVariable Long id) {
-    return new ResponseEntity<>(carRepository.findOne(id), HttpStatus.OK);
-  }
+  // @RequestMapping(path = "{id}")
+  // public ResponseEntity<Car> getCar(@PathVariable Long id) {
+  //   return new ResponseEntity<>(carRepository.findOne(id), HttpStatus.OK);
+  // }
 }

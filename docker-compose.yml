@@ -1,4 +1,10 @@
 version: '3'
 services:
-  beeride-server:
+  server:
     build: ./beeride-server
+    links:
+      - postgres
+    environment:
+      DB_URL: jdbc:postgresql://postgres/beeride
+  postgres: 
+    build: ./postgres

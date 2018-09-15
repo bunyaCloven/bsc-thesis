@@ -49,17 +49,17 @@ public class PathHandler {
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
-  @RequestMapping(path = "delete", method = RequestMethod.POST)
-  public ResponseEntity<Void> deletePath(@RequestParam Long id) {
-    final boolean existed = pathRepository.exists(id);
-    pathRepository.delete(id);
-    final boolean exists = pathRepository.exists(id);
-    return new ResponseEntity<>(
-        existed && !exists ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
-  }
+  // @RequestMapping(path = "delete", method = RequestMethod.POST)
+  // public ResponseEntity<Void> deletePath(@RequestParam Long id) {
+  //   final boolean existed = pathRepository.exists(id);
+  //   pathRepository.delete(id);
+  //   final boolean exists = pathRepository.exists(id);
+  //   return new ResponseEntity<>(
+  //       existed && !exists ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+  // }
 
-  @RequestMapping(path = "{id}")
-  public ResponseEntity<Path> getPath(@PathVariable Long id) {
-    return new ResponseEntity<>(pathRepository.findOne(id), HttpStatus.OK);
-  }
+  // @RequestMapping(path = "{id}")
+  // public ResponseEntity<Path> getPath(@PathVariable Long id) {
+  //   return new ResponseEntity<>(pathRepository.findOne(id), HttpStatus.OK);
+  // }
 }
